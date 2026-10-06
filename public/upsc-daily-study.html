@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="description" content="GYANAGI UPSC Daily Study — plan, learn, practise, evaluate and revise for the UPSC Civil Services Examination.">
+<title>GYANAGI — UPSC Daily Study</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%237c3aed'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='white' font-family='serif'%3E%E0%A5%90%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="/data/upsc-data.json" as="fetch" crossorigin>
+<style>
+@font-face{font-family:"Noto Sans Devanagari";font-weight:400;font-display:swap;src:url(/fonts/noto-sans-devanagari-devanagari-400-normal.woff2) format("woff2");unicode-range:U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+20A8,U+20B9,U+25CC,U+A830-A839,U+A8E0-A8FF}
+@font-face{font-family:"Noto Sans Devanagari";font-weight:500 800;font-display:swap;src:url(/fonts/noto-sans-devanagari-devanagari-600-normal.woff2) format("woff2");unicode-range:U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+20A8,U+20B9,U+25CC,U+A830-A839,U+A8E0-A8FF}
+:root{--bg:#0a0a0f;--panel:#13121c;--panel2:#1b1928;--line:#2a2740;--ink:#ecebf5;--muted:#a19cbc;--p:#8b5cf6;--p2:#a78bfa;--p3:#c4b5fd;--pd:#2e1f5e;
+--ok:#4ade80;--okd:#13301f;--warn:#fbbf24;--warnd:#3a2c0b;--bad:#f87171;--badd:#3b1515;--r:14px;
+--sans:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Devanagari","Noto Sans",sans-serif;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:108px}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html[lang=hi] body{line-height:1.8}
+a{color:var(--p3)}h1,h2,h3{line-height:1.3;margin:0 0 .5em}h2{font-size:1.15rem;letter-spacing:.01em}h3{font-size:1rem}p{margin:0 0 .7em}
+button,select,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--p2);outline-offset:2px;border-radius:8px}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;z-index:99;background:var(--panel);padding:6px 10px}
+header.top{position:sticky;top:0;z-index:20;background:rgba(10,10,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:800;letter-spacing:.08em}
+.om{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a78bfa,#6d28d9);display:grid;place-items:center;color:#fff;font:600 21px/1 "Noto Sans Devanagari",serif;box-shadow:0 0 18px rgba(139,92,246,.45)}
+.logo small{display:block;font-weight:500;letter-spacing:0;color:var(--muted);font-size:.72rem}
+nav.secs{display:flex;gap:4px;overflow-x:auto;flex:1;scrollbar-width:none}nav.secs::-webkit-scrollbar{display:none}
+nav.secs a{white-space:nowrap;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:999px;font-size:.86rem}
+nav.secs a:hover,nav.secs a.on{color:var(--ink);background:var(--panel2)}
+main{max-width:1120px;margin:0 auto;padding:16px 16px 120px}
+section{margin:0 0 22px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px;min-width:0}
+.grid{display:grid;gap:12px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.spread{justify-content:space-between}
+.muted{color:var(--muted)}.small{font-size:.86rem}.tiny{font-size:.76rem}
+.kicker{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--p2);font-weight:700;margin-bottom:4px}
+.stat b{display:block;font-size:1.5rem;font-variant-numeric:tabular-nums;line-height:1.2}.stat span{color:var(--muted);font-size:.78rem}
+.hero{background:linear-gradient(135deg,#1c1036 0%,#13121c 55%);border-color:#3b2a6e}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid transparent;border-radius:10px;padding:8px 14px;background:var(--p);color:#fff;font-weight:650;cursor:pointer;text-decoration:none;font-size:.92rem}
+.btn:hover{filter:brightness(1.1)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.big{padding:13px 22px;font-size:1rem;letter-spacing:.03em}
+.btn.ghost{background:transparent;border-color:var(--line);color:var(--p3)}.btn.ghost:hover{border-color:var(--p2)}
+.btn.soft{background:var(--pd);color:var(--p3)}.btn.sm{padding:5px 10px;font-size:.82rem}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:999px;font-size:.75rem;background:var(--panel2);color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+.chip.p{background:var(--pd);color:var(--p3);border-color:transparent}.chip.ok{background:var(--okd);color:var(--ok);border-color:transparent}
+.chip.warn{background:var(--warnd);color:var(--warn);border-color:transparent}.chip.bad{background:var(--badd);color:var(--bad);border-color:transparent}
+button.chip{cursor:pointer}button.chip.on{background:var(--p);color:#fff;border-color:transparent}
+.meter{height:8px;background:var(--panel2);border-radius:99px;overflow:hidden}.meter i{display:block;height:100%;background:linear-gradient(90deg,#7c3aed,#a78bfa);border-radius:inherit}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.steps li:last-child{border-bottom:0}
+.steps li::before{counter-increment:s;content:counter(s);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--panel2);font-size:.8rem;color:var(--muted)}
+.steps li.done::before{content:"✓";background:var(--okd);color:var(--ok)}.steps li.cur::before{background:var(--p);color:#fff}
+.steps li.done .t{color:var(--muted);text-decoration:line-through}
+.rec{border:1px solid #4c2fa0;background:linear-gradient(135deg,#21124a,#13121c)}
+.rec .what{font-size:1.25rem;font-weight:800;letter-spacing:.02em}
+ul.why{margin:.3em 0 .8em;padding-left:1.1em}ul.why li{margin:.15em 0}
+details.subj{border:1px solid var(--line);border-radius:12px;background:var(--panel);margin-bottom:8px}
+details.subj>summary{cursor:pointer;padding:10px 14px;display:flex;justify-content:space-between;gap:8px;font-weight:650;list-style:none}
+details.subj>summary::-webkit-details-marker{display:none}
+.trow{display:grid;grid-template-columns:minmax(0,1.6fr) 90px repeat(4,minmax(0,.7fr)) auto;gap:8px;align-items:center;padding:8px 14px;border-top:1px solid var(--line);font-size:.85rem}
+.trow.head{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}
+.q{border-top:1px solid var(--line);padding:12px 0}.q:first-child{border-top:0}
+.q .stem{font-weight:600;margin-bottom:8px}.q .alt{color:var(--muted);font-size:.9rem;margin:-4px 0 8px}
+.opt{display:flex;gap:10px;width:100%;text-align:left;padding:9px 12px;margin:5px 0;border-radius:10px;border:1px solid var(--line);background:var(--panel2);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--p2)}.opt b{flex:none;width:1.3em;color:var(--p3)}
+.opt.right{border-color:var(--ok);background:var(--okd)}.opt.wrong{border-color:var(--bad);background:var(--badd)}.opt:disabled{cursor:default}
+.expl{font-size:.88rem;background:var(--panel2);border-left:3px solid var(--p);padding:8px 12px;border-radius:0 8px 8px 0;margin-top:6px}
+.passage{font-size:.9rem;background:var(--panel2);padding:10px 12px;border-radius:10px;margin-bottom:8px;color:#d6d3e8}
+.ca{border-top:1px solid var(--line);padding:12px 0}.ca:first-child{border-top:0}.ca h3{font-size:.98rem;margin:0 0 4px}
+textarea{width:100%;min-height:260px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;line-height:1.65;resize:vertical}
+input[type=search],input[type=number],select{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:.8rem;color:var(--muted)}label.f>*{color:var(--ink)}
+.flow{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px}.flow span{font-size:.72rem;padding:3px 8px;border-radius:99px;background:var(--panel2);color:var(--muted)}
+.flow span.on{background:var(--p);color:#fff}.flow span.done{background:var(--pd);color:var(--p3)}
+.weak{border:1px solid #6b2121;background:linear-gradient(135deg,#2a1010,#13121c);border-radius:12px;padding:12px 14px;margin:10px 0}
+.weak .big{font-size:1.1rem;font-weight:800;color:#fca5a5}
+.rd{display:grid;grid-template-columns:130px 1fr 52px;gap:10px;align-items:center;margin:6px 0;font-size:.9rem}
+.empty{color:var(--muted);text-align:center;padding:22px 10px}
+.missionbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(19,18,28,.97);border-top:1px solid #4c2fa0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:none}
+.missionbar.on{display:block}.missionbar .in{max-width:1120px;margin:0 auto;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:10px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:40;max-width:90vw}
+.toast.show{opacity:1}
+.hidden{display:none!important}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+@media (max-width:1180px){.bar{flex-wrap:wrap;row-gap:6px}nav.secs{order:3;flex-basis:100%}#langBtn{margin-left:auto}}
+@media (max-width:860px){.g3,.g5{grid-template-columns:repeat(2,minmax(0,1fr))}.trow{grid-template-columns:minmax(0,1fr) 70px 60px auto}.trow .hm{display:none}}
+@media (max-width:620px){.g2,.g3{grid-template-columns:minmax(0,1fr)}.g5{grid-template-columns:repeat(2,minmax(0,1fr))}.logo small{display:none}.rd{grid-template-columns:100px 1fr 44px}main{padding:12px 12px 120px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#command">Skip to content</a>
+<header class="top"><div class="bar">
+  <a class="logo" href="#command" aria-label="GYANAGI home"><span class="om" aria-hidden="true">ॐ</span><span>GYANAGI<small data-t>UPSC Daily Study</small></span></a>
+  <nav class="secs" id="secnav" aria-label="Sections"></nav>
+  <button class="btn ghost sm" id="langBtn" type="button" data-act="lang" lang="hi">हिंदी</button>
+</div></header>
+
+<main id="main">
+  <section id="command" aria-labelledby="cc-h"><div id="commandBody" class="grid"><div class="card empty">Loading…</div></div></section>
+  <section id="teach" aria-labelledby="teach-h"></section>
+  <section id="syllabus"></section>
+  <section id="prelims"></section>
+  <section id="pyq"></section>
+  <section id="mains"></section>
+  <section id="revision"></section>
+  <section id="ca"></section>
+  <section id="csat"></section>
+  <section id="readiness"></section>
+</main>
+
+<div class="missionbar" id="missionBar" role="region" aria-label="Today's mission"><div class="in" id="missionBarIn"></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module">
+import * as E from './js/engine.mjs';
+
+// ------------------------------------------------------------------ i18n (English default; Hindi via the toggle or the Medium setting)
+const HI = {
+  'UPSC Daily Study': 'यूपीएससी दैनिक अध्ययन', 'Command Center': 'कमांड सेंटर', 'Teach Me': 'मुझे पढ़ाइए', 'Syllabus': 'पाठ्यक्रम', 'Prelims Practice': 'प्रारंभिक अभ्यास',
+  'PYQs': 'पिछले प्रश्न', 'Mains': 'मुख्य परीक्षा', 'Revision': 'पुनरावृत्ति', 'Current Affairs': 'समसामयिकी', 'CSAT': 'सीसैट', 'Readiness': 'तैयारी',
+  'Days remaining': 'शेष दिन', "Today's planned study": 'आज का नियोजित अध्ययन', 'Completed today': 'आज पूर्ण', 'Overall preparation': 'कुल तैयारी',
+  'to Prelims (expected late May)': 'प्रारंभिक तक (संभावित मई के अंत में)', 'YOUR TODAY\'S MISSION': 'आज का आपका मिशन', "START TODAY'S PLAN": 'आज की योजना शुरू करें',
+  "CONTINUE TODAY'S PLAN": 'आज की योजना जारी रखें', 'Mission complete for today': 'आज का मिशन पूरा', 'WHAT SHOULD I STUDY NOW?': 'अभी मुझे क्या पढ़ना चाहिए?',
+  'Study / Learn': 'अध्ययन', 'Source / NCERT': 'स्रोत / एनसीईआरटी', 'PYQ': 'पिछले प्रश्न', 'Prelims Practice ': 'प्रारंभिक अभ्यास', 'Mains Answer': 'मुख्य उत्तर',
+  'Revision ': 'पुनरावृत्ति', 'CSAT ': 'सीसैट', 'min': 'मि', 'h': 'घं', 'STUDY': 'पढ़ें', 'WHY THIS TOPIC?': 'यह विषय क्यों?', 'START TOPIC': 'विषय शुरू करें',
+  'VIEW PYQs': 'पिछले प्रश्न देखें', 'PRACTISE': 'अभ्यास करें', 'weak recent performance ({0}% accuracy)': 'हाल का कमज़ोर प्रदर्शन ({0}% सटीकता)',
+  'revision overdue by {0} day(s)': 'पुनरावृत्ति {0} दिन से बकाया', 'revision due today': 'आज पुनरावृत्ति बकाया', 'high PYQ frequency': 'पिछले प्रश्नों में बार-बार पूछा गया',
+  '{0} related current-affairs item(s)': '{0} संबंधित समसामयिक समाचार', 'not studied yet — core syllabus topic': 'अभी नहीं पढ़ा — मूल पाठ्यक्रम विषय',
+  'Set up your study profile': 'अपनी अध्ययन प्रोफ़ाइल बनाइए', 'Six quick answers. Saved only on this device.': 'छह छोटे उत्तर। केवल इसी डिवाइस पर सहेजे जाते हैं।',
+  'Attempt year': 'प्रयास वर्ष', 'Preparation level': 'तैयारी स्तर', 'Beginner': 'शुरुआती', 'Intermediate': 'मध्यम', 'Revision level': 'पुनरावृत्ति स्तर',
+  'Daily hours': 'प्रतिदिन घंटे', 'Optional subject': 'वैकल्पिक विषय', 'Not decided': 'तय नहीं', 'Medium': 'माध्यम', 'English': 'अंग्रेज़ी', 'Hindi': 'हिंदी',
+  'Bilingual': 'द्विभाषी', 'Main focus': 'मुख्य फ़ोकस', 'Prelims': 'प्रारंभिक', 'Both': 'दोनों', 'Save profile': 'प्रोफ़ाइल सहेजें', 'Edit profile': 'प्रोफ़ाइल बदलें',
+  'Profile saved': 'प्रोफ़ाइल सहेजी गई', 'Topic': 'विषय', 'UNDERSTAND': 'समझें', 'UPSC ANGLE': 'यूपीएससी दृष्टिकोण', 'SOURCE': 'स्रोत',
+  'PRELIMS QUESTION': 'प्रारंभिक प्रश्न', 'MAINS QUESTION': 'मुख्य प्रश्न', 'REVISION': 'पुनरावृत्ति', 'Next': 'आगे', 'Back': 'पीछे',
+  'No direct NCERT chapter for this topic — use the official sources and current affairs.': 'इस विषय का सीधा एनसीईआरटी अध्याय नहीं — आधिकारिक स्रोत और समसामयिकी देखें।',
+  'Open official papers for this topic': 'इस विषय के आधिकारिक प्रश्नपत्र खोलें', 'Write this answer in the Mains Lab': 'यह उत्तर मुख्य लैब में लिखें',
+  'Mark studied & schedule revision': 'पढ़ा हुआ चिह्नित करें और पुनरावृत्ति तय करें', 'Studied. First revision on {0}.': 'पढ़ लिया। पहली पुनरावृत्ति {0} को।',
+  'Next revision: {0}': 'अगली पुनरावृत्ति: {0}', 'Not scheduled yet': 'अभी तय नहीं', 'Choose a topic': 'विषय चुनें',
+  'Syllabus graph': 'पाठ्यक्रम मानचित्र', 'Mastery': 'दक्षता', 'MCQ acc.': 'प्रश्न सटीकता', 'Last studied': 'अंतिम अध्ययन', 'Revision due': 'पुनरावृत्ति तिथि',
+  'PYQs opened': 'खोले गए प्रश्नपत्र', 'CA': 'समसामयिकी', 'Teach': 'पढ़ें', 'PRELIMS PERFORMANCE': 'प्रारंभिक प्रदर्शन', 'Overall accuracy': 'कुल सटीकता',
+  'Polity': 'राजव्यवस्था', 'History': 'इतिहास', 'Geography': 'भूगोल', 'Economy': 'अर्थव्यवस्था', 'Environment': 'पर्यावरण', 'Science': 'विज्ञान',
+  'Current Affairs-linked': 'समसामयिकी-संबद्ध', 'BIGGEST WEAKNESS': 'सबसे बड़ी कमज़ोरी', 'Accuracy': 'सटीकता', 'PRACTISE WEAK AREA': 'कमज़ोर क्षेत्र का अभ्यास करें',
+  'Answer at least 3 questions in a topic to find your weakest area.': 'सबसे कमज़ोर क्षेत्र जानने के लिए किसी विषय में कम से कम 3 प्रश्न हल करें।',
+  'attempts': 'प्रयास', 'correct': 'सही', 'incorrect': 'गलत', 'Mixed set': 'मिश्रित सेट', 'This topic': 'यह विषय', 'Weak areas': 'कमज़ोर क्षेत्र', 'New set': 'नया सेट',
+  'Explanation': 'व्याख्या', 'Correct!': 'सही!', 'Answer': 'उत्तर', 'Set complete: {0}/{1}. Revision updated.': 'सेट पूरा: {0}/{1}। पुनरावृत्ति अद्यतन।',
+  'Gyanagi practice question': 'Gyanagi अभ्यास प्रश्न', 'OFFICIAL PAPERS': 'आधिकारिक प्रश्नपत्र', 'Relevant official papers': 'संबंधित आधिकारिक प्रश्नपत्र',
+  'Related practice': 'संबंधित अभ्यास', 'Mains question': 'मुख्य प्रश्न', 'Add topic to revision': 'विषय पुनरावृत्ति में जोड़ें', 'Added to revision': 'पुनरावृत्ति में जोड़ा गया',
+  'All papers': 'सभी प्रश्नपत्र', 'All years': 'सभी वर्ष', 'Search papers…': 'प्रश्नपत्र खोजें…', 'Open PDF': 'पीडीएफ़ खोलें',
+  'Official UPSC archive': 'आधिकारिक यूपीएससी संग्रह', 'Papers are listed from upsc.gov.in and open on the official site.': 'प्रश्नपत्र upsc.gov.in से सूचीबद्ध हैं और आधिकारिक साइट पर खुलते हैं।',
+  'The official paper index is not reachable right now. Open the UPSC archive directly:': 'आधिकारिक प्रश्नपत्र सूची अभी उपलब्ध नहीं। सीधे यूपीएससी संग्रह खोलें:',
+  'No papers match. Clear the filters or open the archive.': 'कोई प्रश्नपत्र नहीं मिला। फ़िल्टर हटाएँ या संग्रह खोलें।',
+  'MAINS ANSWER LAB': 'मुख्य उत्तर लैब', 'QUESTION': 'प्रश्न', 'WORD LIMIT': 'शब्द सीमा', 'WRITE': 'लिखें', 'SUBMIT': 'जमा करें', 'EVALUATE': 'मूल्यांकन', 'SEE WEAKNESSES': 'कमज़ोरियाँ देखें', 'REWRITE': 'पुनर्लेखन',
+  'marks': 'अंक', 'words': 'शब्द', 'Another question': 'दूसरा प्रश्न', 'Submit & evaluate': 'जमा करें और मूल्यांकन', 'Write at least 30 words.': 'कम से कम 30 शब्द लिखें।',
+  'MAIN WEAKNESS': 'मुख्य कमज़ोरी', 'REWRITE ANSWER': 'उत्तर फिर से लिखें', 'Score': 'अंक', 'Previous attempt': 'पिछला प्रयास',
+  'Missed the demand of the question ({0}): add both sides and a reasoned judgement.': 'प्रश्न की माँग ({0}) छूटी: दोनों पक्ष और तर्कपूर्ण निर्णय जोड़ें।',
+  'Insufficient dimensions: cover more aspects.': 'आयाम अपर्याप्त: अधिक पहलू शामिल करें।', 'Weak introduction: open with 2–3 lines that define the issue.': 'कमज़ोर भूमिका: 2–3 पंक्तियों में मुद्दा परिभाषित करें।',
+  'Poor examples: add articles, cases, committees, data or schemes.': 'उदाहरण कमज़ोर: अनुच्छेद, वाद, समितियाँ, आँकड़े या योजनाएँ जोड़ें।',
+  'Weak conclusion: end with a forward-looking way forward.': 'कमज़ोर निष्कर्ष: भविष्योन्मुखी आगे की राह के साथ समाप्त करें।',
+  'Too short ({0} words).': 'बहुत छोटा ({0} शब्द)।', 'Too long ({0} words) — trim to the limit.': 'बहुत लंबा ({0} शब्द) — सीमा तक घटाएँ।',
+  'No major weakness found. Polish language and add one more example.': 'कोई बड़ी कमज़ोरी नहीं। भाषा सुधारें और एक और उदाहरण जोड़ें।',
+  'Dimensions covered': 'शामिल आयाम', 'Dimensions to add': 'जोड़ने योग्य आयाम', 'Answers written': 'लिखे गए उत्तर', 'Average': 'औसत',
+  'REVISION DUE TODAY': 'आज बकाया पुनरावृत्ति', 'HIGH PRIORITY': 'उच्च प्राथमिकता', 'NORMAL': 'सामान्य', 'COMPLETED': 'पूर्ण', 'Forgot': 'भूल गया', 'Hard': 'कठिन', 'Good': 'अच्छा', 'Easy': 'आसान',
+  'overdue {0}d': '{0} दिन बकाया', 'weak': 'कमज़ोर', 'Nothing here.': 'यहाँ कुछ नहीं।', 'Next in {0} day(s)': '{0} दिन बाद अगली',
+  'Recall the topic without notes, then rate yourself. Weak recall comes back sooner; strong recall stretches the interval.': 'बिना नोट्स विषय याद करें, फिर स्वयं को आँकें। कमज़ोर याद जल्दी लौटती है; मज़बूत याद का अंतराल बढ़ता है।',
+  'Study a topic or add one to revision to start your schedule.': 'अनुसूची शुरू करने के लिए कोई विषय पढ़ें या पुनरावृत्ति में जोड़ें।',
+  'All': 'सभी', 'Search current affairs…': 'समसामयिकी खोजें…', 'UPSC relevance': 'यूपीएससी प्रासंगिकता', 'RELATED TOPIC': 'संबंधित विषय', 'ADD TO REVISION': 'पुनरावृत्ति में जोड़ें',
+  'Source': 'स्रोत', 'via Khoj': 'Khoj से', 'Fallback: PIB official feed': 'वैकल्पिक: PIB आधिकारिक फ़ीड', 'Showing saved results from {0}': '{0} के सहेजे परिणाम',
+  'Current affairs are unavailable right now. Saved items appear below.': 'समसामयिकी अभी उपलब्ध नहीं। सहेजे गए समाचार नीचे हैं।',
+  'No syllabus link found': 'पाठ्यक्रम से संबंध नहीं मिला', 'Saved for revision': 'पुनरावृत्ति हेतु सहेजे गए',
+  'polity': 'राजव्यवस्था', 'economy': 'अर्थव्यवस्था', 'environment': 'पर्यावरण', 'science': 'विज्ञान-प्रौद्योगिकी', 'ir': 'अंतरराष्ट्रीय संबंध', 'society': 'समाज', 'culture': 'संस्कृति', 'security': 'सुरक्षा',
+  'CSAT ACCURACY': 'सीसैट सटीकता', 'Weakest area': 'सबसे कमज़ोर क्षेत्र', 'Questions attempted': 'हल किए प्रश्न', 'Questions correct': 'सही प्रश्न',
+  'comprehension': 'बोधगम्यता', 'reasoning': 'तार्किक क्षमता', 'numeracy': 'संख्यात्मकता', 'di': 'आँकड़ा निर्वचन', 'CSAT is qualifying: you need 33% (66/200).': 'सीसैट अर्हक है: 33% (66/200) आवश्यक।',
+  'UPSC READINESS': 'यूपीएससी तैयारी', 'prelims': 'प्रारंभिक', 'mains': 'मुख्य', 'csat': 'सीसैट', 'revision': 'पुनरावृत्ति', 'currentAffairs': 'समसामयिकी', 'answerWriting': 'उत्तर लेखन',
+  'STRONGEST AREA': 'सबसे मज़बूत', 'WEAKEST AREA': 'सबसे कमज़ोर', 'NEXT PRIORITY': 'अगली प्राथमिकता', 'Not started': 'शुरू नहीं', 'Go': 'चलें',
+  'How these scores work': 'ये अंक कैसे बनते हैं',
+  'Prelims = accuracy (weighted by number of attempts, full weight at 40) and syllabus coverage. CSAT = accuracy, full weight at 16 attempts. Mains = average answer score relative to a strong 75% answer, full weight at 5 answers. Answer Writing = answers in the last 14 days (target 7). Revision = share of scheduled topics not overdue. Current Affairs = items read or saved in the last 7 days (target 10).':
+    'प्रारंभिक = सटीकता (प्रयासों के अनुसार भारित, 40 पर पूरा भार) और पाठ्यक्रम कवरेज। सीसैट = सटीकता, 16 प्रयासों पर पूरा भार। मुख्य = 75% के मज़बूत उत्तर के सापेक्ष औसत अंक, 5 उत्तरों पर पूरा भार। उत्तर लेखन = पिछले 14 दिनों के उत्तर (लक्ष्य 7)। पुनरावृत्ति = तय विषयों में बकाया न होने का अनुपात। समसामयिकी = पिछले 7 दिनों में पढ़े या सहेजे समाचार (लक्ष्य 10)।',
+  'Step {0} of {1}': 'चरण {0} / {1}', 'Done — next step': 'पूर्ण — अगला चरण', 'Exit plan': 'योजना बंद करें', 'Finish': 'समाप्त',
+  'Step done': 'चरण पूर्ण', 'Exam date has passed — edit your attempt year.': 'परीक्षा तिथि निकल गई — प्रयास वर्ष बदलें।',
+  'Loading…': 'लोड हो रहा है…', 'Could not load study data. Check your connection and reload.': 'अध्ययन डेटा लोड नहीं हुआ। कनेक्शन जाँचकर पुनः लोड करें।', 'Reload': 'पुनः लोड करें',
+  'Practise CSAT': 'सीसैट अभ्यास', 'Open': 'खोलें', 'Learn this topic': 'यह विषय पढ़ें', 'Optional': 'वैकल्पिक', 'Focus': 'फ़ोकस', 'level': 'स्तर',
+  'questions': 'प्रश्न', 'One topic, chosen from your accuracy, overdue revisions, PYQ frequency and current affairs.': 'एक विषय — आपकी सटीकता, बकाया पुनरावृत्ति, पिछले प्रश्नों की आवृत्ति और समसामयिकी के आधार पर।', 'No questions for this selection yet.': 'इस चयन के लिए अभी प्रश्न नहीं।', 'Practise this topic': 'यह विषय अभ्यास करें',
+};
+const S = { state: null, data: null, ui: { topic: null, prelims: null, csat: null, mains: null, caArea: '', caQ: '', ca: null, pyq: { paper: '', year: '', q: '' }, teachStep: 0, mission: false, rec: null } };
+const lang = () => S.state.lang || 'en';
+const t = (s, ...a) => { let x = (lang() === 'hi' && HI[s]) || s; a.forEach((v, i) => { x = x.replace(`{${i}}`, v); }); return x; };
+const $ = (sel, el = document) => el.querySelector(sel);
+const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const today = () => new Date();
+const nf = (n) => new Intl.NumberFormat(lang() === 'hi' ? 'hi-IN' : 'en-IN').format(n);
+const pct = (x) => (x == null ? '—' : `${Math.round(x * 100)}%`);
+const fmtMin = (m) => { m = Math.round(m); return m >= 60 ? `${Math.floor(m / 60)} ${t('h')}${m % 60 ? ` ${m % 60} ${t('min')}` : ''}` : `${m} ${t('min')}`; };
+const bi = () => S.state.profile?.medium === 'bi';
+const tn = (topic) => (topic ? (lang() === 'hi' ? topic.nh : topic.n) : '');
+const sn = (sub) => (sub ? (lang() === 'hi' ? sub.nh : sub.n) : '');
+const topicById = (id) => S.data.topics.find((x) => x.id === id);
+const subjectById = (id) => S.data.subjects.find((x) => x.id === id);
+function save() { E.saveState(localStorage, S.state); }
+function toast(m) { const el = $('#toast'); el.textContent = m; el.classList.add('show'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 2600); }
+const meter = (v) => `<div class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(v || 0)}"><i style="width:${Math.max(0, Math.min(100, v || 0))}%"></i></div>`;
+function go(id) { const el = document.getElementById(id); if (el) { el.scrollIntoView({ block: 'start' }); el.setAttribute('tabindex', '-1'); el.focus({ preventScroll: true }); } }
+const qText = (q) => (lang() === 'hi' && q.qh ? q.qh : q.q);
+const qAlt = (q) => (bi() && q.qh && lang() === 'en' ? q.qh : '');
+const optsOf = (q) => (lang() === 'hi' && q.oh?.length === 4 ? q.oh : q.o);
+const explOf = (q) => (lang() === 'hi' && q.xh ? q.xh : q.x);
+
+const SECTIONS = [['command', 'Command Center'], ['teach', 'Teach Me'], ['syllabus', 'Syllabus'], ['prelims', 'Prelims Practice'], ['pyq', 'PYQs'],
+  ['mains', 'Mains'], ['revision', 'Revision'], ['ca', 'Current Affairs'], ['csat', 'CSAT'], ['readiness', 'Readiness']];
+function renderNav() {
+  $('#secnav').innerHTML = SECTIONS.map(([id, l]) => `<a href="#${id}">${esc(t(l))}</a>`).join('');
+  $('#langBtn').textContent = lang() === 'hi' ? 'English' : 'हिंदी';
+  $('#langBtn').setAttribute('lang', lang() === 'hi' ? 'en' : 'hi');
+  document.documentElement.lang = lang();
+  document.querySelectorAll('[data-t]').forEach((el) => { el.dataset.en ||= el.textContent; el.textContent = t(el.dataset.en); });
+  $('.skip').textContent = lang() === 'hi' ? 'सामग्री पर जाएँ' : 'Skip to content';
+}
+
+// ------------------------------------------------------------------ current-affairs counts (cached per day; used by recommendations)
+function caCounts() { return S.ui.ca ? E.caCountsFrom(S.ui.ca.items, S.data) : (S.state.caCounts?.d === E.iso(today()) ? S.state.caCounts.c : {}); }
+
+// ------------------------------------------------------------------ Phase 1–3: command center, profile, recommendation
+const OPTIONALS = ['Agriculture', 'Animal Husbandry and Veterinary Science', 'Anthropology', 'Botany', 'Chemistry', 'Civil Engineering', 'Commerce and Accountancy', 'Economics', 'Electrical Engineering', 'Geography', 'Geology', 'History', 'Law', 'Management', 'Mathematics', 'Mechanical Engineering', 'Medical Science', 'Philosophy', 'Physics', 'Political Science and International Relations', 'Psychology', 'Public Administration', 'Sociology', 'Statistics', 'Zoology',
+  'Assamese Literature', 'Bengali Literature', 'Bodo Literature', 'Dogri Literature', 'English Literature', 'Gujarati Literature', 'Hindi Literature', 'Kannada Literature', 'Kashmiri Literature', 'Konkani Literature', 'Maithili Literature', 'Malayalam Literature', 'Manipuri Literature', 'Marathi Literature', 'Nepali Literature', 'Odia Literature', 'Punjabi Literature', 'Sanskrit Literature', 'Santhali Literature', 'Sindhi Literature', 'Tamil Literature', 'Telugu Literature', 'Urdu Literature'];
+function profileForm() {
+  const p = S.state.profile || {};
+  const y = new Date().getFullYear();
+  const sel = (name, val, pairs) => `<select name="${name}">${pairs.map(([v, l]) => `<option value="${esc(v)}" ${String(v) === String(val ?? '') ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select>`;
+  return `<form class="card" id="profileForm" aria-labelledby="pf-h">
+    <h2 id="pf-h">${t('Set up your study profile')}</h2><p class="muted small">${t('Six quick answers. Saved only on this device.')}</p>
+    <div class="grid g3">
+      <label class="f">${t('Attempt year')}${sel('year', p.year || y + 1, [y, y + 1, y + 2, y + 3].map((v) => [v, v]))}</label>
+      <label class="f">${t('Preparation level')}${sel('level', p.level || 'beginner', [['beginner', t('Beginner')], ['intermediate', t('Intermediate')], ['revision', t('Revision level')]])}</label>
+      <label class="f">${t('Daily hours')}<input type="number" name="hours" min="1" max="16" step="0.5" value="${p.hours || 6}" required></label>
+      <label class="f">${t('Optional subject')}${sel('optional', p.optional || '', [['', t('Not decided')], ...OPTIONALS.map((o) => [o, o])])}</label>
+      <label class="f">${t('Medium')}${sel('medium', p.medium || 'en', [['en', t('English')], ['hi', t('Hindi')], ['bi', t('Bilingual')]])}</label>
+      <label class="f">${t('Main focus')}${sel('focus', p.focus || 'both', [['prelims', t('Prelims')], ['mains', t('Mains')], ['both', t('Both')]])}</label>
+    </div>
+    <div class="row" style="margin-top:12px"><button class="btn" type="submit">${t('Save profile')}</button>${S.state.profile ? `<button class="btn ghost" type="button" data-act="profile-cancel">${lang() === 'hi' ? 'रद्द करें' : 'Cancel'}</button>` : ''}</div>
+  </form>`;
+}
+function reasonText([k, v]) {
+  return { weak: t('weak recent performance ({0}% accuracy)', v), overdue: t('revision overdue by {0} day(s)', v), dueToday: t('revision due today'),
+    pyq: t('high PYQ frequency'), ca: t('{0} related current-affairs item(s)', v), new: t('not studied yet — core syllabus topic') }[k];
+}
+const STEP_LABEL = { learn: 'Study / Learn', source: 'Source / NCERT', pyq: 'PYQ', prelims: 'Prelims Practice ', mains: 'Mains Answer', revision: 'Revision ', csat: 'CSAT ' };
+function renderCommand() {
+  const st = S.state; const d = S.data; const now = today();
+  if (!st.profile || S.ui.editProfile) { $('#commandBody').innerHTML = profileForm(); return; }
+  const p = st.profile;
+  const exam = E.examDate(p);
+  const left = E.daysBetween(now, exam);
+  const m = E.mission(st, d, now, caCounts());
+  const done = E.completedMinutes(st, now);
+  const prog = E.overallProgress(st, d);
+  const topic = topicById(S.ui.missionTopic || m.topicId);
+  const rec = S.ui.rec && topicById(S.ui.rec.topicId);
+  const allDone = m.doneCount === m.steps.length;
+  $('#commandBody').innerHTML = `
+  <div class="card hero">
+    <div class="row spread"><div><div class="kicker">${t('Command Center')}</div><h1 id="cc-h" style="font-size:1.35rem">UPSC CSE ${esc(p.year)}</h1></div>
+      <div class="row small muted">${esc(t(p.focus === 'both' ? 'Both' : p.focus === 'prelims' ? 'Prelims' : 'Mains'))} · ${esc(t(p.level === 'revision' ? 'Revision level' : p.level === 'intermediate' ? 'Intermediate' : 'Beginner'))}${p.optional ? ` · ${esc(p.optional)}` : ''}
+      <button class="btn ghost sm" data-act="profile-edit">${t('Edit profile')}</button></div></div>
+    <div class="grid g5" style="margin-top:10px">
+      <div class="stat"><b>${left >= 0 ? nf(left) : '—'}</b><span>${t('Days remaining')}${left >= 0 ? ` · ${t('to Prelims (expected late May)')}` : ''}</span></div>
+      <div class="stat"><b>${fmtMin(E.plannedMinutes(p))}</b><span>${t("Today's planned study")}</span></div>
+      <div class="stat"><b>${fmtMin(done)}</b><span>${t('Completed today')}</span>${meter(100 * done / E.plannedMinutes(p))}</div>
+      <div class="stat"><b>${nf(prog)}%</b><span>${t('Overall preparation')}</span>${meter(prog)}</div>
+      <div class="stat"><b>${nf(E.revisionBuckets(st, now).due)}</b><span>${t('REVISION DUE TODAY')}</span></div>
+    </div>
+    ${left < 0 ? `<p class="small" style="color:var(--warn);margin-top:8px">${t('Exam date has passed — edit your attempt year.')}</p>` : ''}
+  </div>
+  <div class="grid g2">
+    <div class="card"><div class="kicker">${t("YOUR TODAY'S MISSION")}</div>
+      ${topic ? `<p class="small muted" style="margin:0 0 6px">${t('Topic')}: <b style="color:var(--ink)">${esc(sn(subjectById(topic.s)))} — ${esc(tn(topic))}</b></p>` : ''}
+      <ol class="steps">${m.steps.map((s) => `<li class="${s.done ? 'done' : ''} ${m.next?.key === s.key && S.ui.mission ? 'cur' : ''}"><span class="t">${esc(t(STEP_LABEL[s.key]))}</span><span class="muted small">${fmtMin(s.minutes)}</span></li>`).join('')}</ol>
+      <div style="margin-top:12px">${allDone ? `<span class="chip ok">✓ ${t('Mission complete for today')}</span>` : `<button class="btn big" data-act="mission-start">${m.doneCount ? t("CONTINUE TODAY'S PLAN") : t("START TODAY'S PLAN")}</button>`}</div>
+    </div>
+    <div class="card rec" id="recCard">
+      ${rec ? `<div class="kicker">${t('WHAT SHOULD I STUDY NOW?')}</div>
+        <div class="what">${t('STUDY')} ${esc(sn(subjectById(rec.s)).toUpperCase())} — ${esc(tn(rec).toUpperCase())}</div>
+        <div class="kicker" style="margin-top:10px">${t('WHY THIS TOPIC?')}</div>
+        <ul class="why">${S.ui.rec.reasons.map((r) => `<li>${esc(reasonText(r))}</li>`).join('')}</ul>
+        <div class="row"><button class="btn" data-act="teach" data-id="${rec.id}">${t('START TOPIC')}</button><button class="btn ghost" data-act="pyq-topic" data-id="${rec.id}">${t('VIEW PYQs')}</button><button class="btn ghost" data-act="practise" data-id="${rec.id}">${t('PRACTISE')}</button></div>`
+      : `<div style="display:grid;place-items:center;align-content:center;gap:10px;min-height:150px;text-align:center"><button class="btn big" data-act="recommend">${t('WHAT SHOULD I STUDY NOW?')}</button><p class="small muted" style="max-width:34ch;margin:0">${t('One topic, chosen from your accuracy, overdue revisions, PYQ frequency and current affairs.')}</p></div>`}
+    </div>
+  </div>`;
+}
+
+// ------------------------------------------------------------------ mission guide (uses the real sections below)
+const STEP_SECTION = { learn: 'teach', source: 'teach', pyq: 'pyq', prelims: 'prelims', mains: 'mains', revision: 'revision', csat: 'csat' };
+function missionPlan() { return E.mission(S.state, S.data, today(), caCounts()); }
+function gotoStep(key) {
+  const m = missionPlan();
+  const topicId = S.ui.missionTopic || m.topicId;
+  S.ui.missionTopic = topicId;
+  if (key === 'learn') { S.ui.topic = topicId; S.ui.teachStep = 0; renderTeach(); }
+  if (key === 'source') { S.ui.topic = topicId; S.ui.teachStep = 2; renderTeach(); }
+  if (key === 'pyq') { openPyqForTopic(topicId, false); }
+  if (key === 'prelims') { startPrelims('topic', topicId, false); }
+  if (key === 'mains') { pickMains(topicId); renderMains(); }
+  if (key === 'csat') { startCsat('', false); }
+  renderMissionBar();
+  go(STEP_SECTION[key]);
+}
+function renderMissionBar() {
+  const bar = $('#missionBar');
+  if (!S.ui.mission || !S.state.profile) { bar.classList.remove('on'); return; }
+  const m = missionPlan();
+  const cur = m.next;
+  const idx = cur ? m.steps.findIndex((s) => s.key === cur.key) + 1 : m.steps.length;
+  $('#missionBarIn').innerHTML = cur
+    ? `<div><div class="kicker">${t('Step {0} of {1}', idx, m.steps.length)}</div><b>${esc(t(STEP_LABEL[cur.key]))}</b> <span class="muted small">· ${fmtMin(cur.minutes)}</span></div>
+       <div class="row"><button class="btn" data-act="mission-done">${t('Done — next step')}</button><button class="btn ghost" data-act="mission-exit">${t('Exit plan')}</button></div>`
+    : `<b>✓ ${t('Mission complete for today')}</b><button class="btn" data-act="mission-exit">${t('Finish')}</button>`;
+  bar.classList.add('on');
+}
+
+// ------------------------------------------------------------------ Phase 12: Teach Me
+const TEACH = ['UNDERSTAND', 'UPSC ANGLE', 'SOURCE', 'PYQ', 'PRELIMS QUESTION', 'MAINS QUESTION', 'REVISION'];
+function renderTeach() {
+  const topic = topicById(S.ui.topic) || topicById(missionPlan().topicId) || S.data.topics[0];
+  S.ui.topic = topic.id;
+  const step = S.ui.teachStep;
+  const note = lang() === 'hi' && topic.noteHi ? topic.noteHi : topic.note;
+  const angle = lang() === 'hi' && topic.angleHi ? topic.angleHi : topic.angle;
+  const mcq = S.data.mcq.find((q) => q.t === topic.id);
+  const mq = S.data.mains.find((q) => q.t === topic.id);
+  const r = S.state.revision[topic.id];
+  let body = '';
+  if (step === 0) body = `<p>${esc(note)}</p>${bi() && topic.noteHi && lang() === 'en' ? `<p class="muted" lang="hi">${esc(topic.noteHi)}</p>` : ''}`;
+  if (step === 1) body = `<p>${esc(angle)}</p><div class="row">${topic.papers.map((x) => `<span class="chip p">${esc(x.toUpperCase())}</span>`).join('')}</div>`;
+  if (step === 2) body = topic.ncert.length ? `<ul>${topic.ncert.map((x) => `<li lang="en">${esc(x)}</li>`).join('')}</ul><p class="tiny muted">NCERT · <a href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener">ncert.nic.in</a></p>` : `<p class="muted">${t('No direct NCERT chapter for this topic — use the official sources and current affairs.')}</p>`;
+  if (step === 3) body = `<p>${E.papersForTopic(topic).map((x) => `<span class="chip p">${esc(x)}</span>`).join(' ')}</p><button class="btn" data-act="pyq-topic" data-id="${topic.id}">${t('Open official papers for this topic')}</button>`;
+  if (step === 4) body = mcq ? `<div id="teachQ">${questionHtml(mcq, 'teach', S.ui.teachAns)}</div>` : `<p class="muted">${t('No questions for this selection yet.')}</p>`;
+  if (step === 5) body = mq ? `<p><b>${esc(qText(mq))}</b> <span class="muted small">(${mq.m} ${t('marks')}, ${mq.wl} ${t('words')})</span></p><button class="btn" data-act="mains-topic" data-id="${topic.id}">${t('Write this answer in the Mains Lab')}</button>` : `<p class="muted">${t('No questions for this selection yet.')}</p>`;
+  if (step === 6) body = `<p>${r ? t('Next revision: {0}', r.due) : t('Not scheduled yet')}</p><button class="btn" data-act="studied" data-id="${topic.id}">${t('Mark studied & schedule revision')}</button>`;
+  $('#teach').innerHTML = `<div class="card"><div class="row spread"><div><div class="kicker">${t('Teach Me')}</div><h2 id="teach-h">${esc(sn(subjectById(topic.s)))} — ${esc(tn(topic))}</h2></div>
+    <label class="f" style="min-width:220px">${t('Choose a topic')}<select data-act="teach-select" aria-label="${t('Choose a topic')}">${S.data.subjects.map((s) => `<optgroup label="${esc(sn(s))}">${S.data.topics.filter((x) => x.s === s.id).map((x) => `<option value="${x.id}" ${x.id === topic.id ? 'selected' : ''}>${esc(tn(x))}</option>`).join('')}</optgroup>`).join('')}</select></label></div>
+    <div class="flow" role="tablist">${TEACH.map((l, i) => `<button class="chip ${i === step ? 'on' : ''}" role="tab" aria-selected="${i === step}" data-act="teach-step" data-i="${i}">${i + 1}. ${t(l)}</button>`).join('')}</div>
+    <div style="min-height:90px">${body}</div>
+    <div class="row spread" style="margin-top:10px"><button class="btn ghost sm" data-act="teach-step" data-i="${Math.max(0, step - 1)}" ${step === 0 ? 'disabled' : ''}>← ${t('Back')}</button>
+    <button class="btn sm" data-act="teach-step" data-i="${Math.min(6, step + 1)}" ${step === 6 ? 'disabled' : ''}>${t('Next')} →</button></div></div>`;
+}
+
+// ------------------------------------------------------------------ Phase 4: syllabus graph
+function renderSyllabus() {
+  const meta = E.topicMeta(S.state, S.data, today(), caCounts());
+  $('#syllabus').innerHTML = `<div class="kicker">${t('Syllabus graph')}</div>
+  ${S.data.subjects.map((s) => {
+    const ts = S.data.topics.filter((x) => x.s === s.id);
+    const avg = Math.round(ts.reduce((a, x) => a + meta[x.id].mastery, 0) / ts.length);
+    return `<details class="subj"><summary><span>${esc(sn(s))} <span class="muted small">· ${ts.length}</span></span><span class="row small" style="min-width:140px">${t('Mastery')} ${avg}% <span style="flex:1">${meter(avg)}</span></span></summary>
+      <div class="trow head"><span>${t('Topic')}</span><span>${t('Mastery')}</span><span>${t('MCQ acc.')}</span><span class="hm">${t('Last studied')}</span><span class="hm">${t('Revision due')}</span><span>${t('CA')} / ${t('PYQs opened')}</span><span></span></div>
+      ${ts.map((x) => { const m = meta[x.id]; return `<div class="trow"><span>${esc(tn(x))}</span><span>${meter(m.mastery)}<span class="tiny muted">${m.mastery}%</span></span>
+        <span>${pct(m.mcqAccuracy)}${m.mcqAttempts ? ` <span class="tiny muted">(${m.mcqAttempts})</span>` : ''}</span><span class="hm">${m.lastStudied || '—'}</span><span class="hm">${m.revisionDue || '—'}</span>
+        <span>${m.currentAffairsCount} / ${m.pyqCount}</span><button class="btn ghost sm" data-act="teach" data-id="${x.id}">${t('Teach')}</button></div>`; }).join('')}
+    </details>`;
+  }).join('')}`;
+}
+
+// ------------------------------------------------------------------ question rendering (shared by Prelims, CSAT, Teach)
+function questionHtml(q, ctx, ans) {
+  const opts = optsOf(q);
+  const answered = ans !== undefined && ans !== null;
+  const passage = q.p ? `<div class="passage">${esc(lang() === 'hi' && q.ph ? q.ph : q.p)}</div>` : '';
+  return `<div class="q" data-q="${q.id}">${passage}<div class="stem">${esc(qText(q))}</div>${qAlt(q) ? `<div class="alt" lang="hi">${esc(qAlt(q))}</div>` : ''}
+    ${opts.map((o, i) => `<button class="opt ${answered && i === q.a ? 'right' : ''} ${answered && i === ans && i !== q.a ? 'wrong' : ''}" data-act="answer" data-ctx="${ctx}" data-id="${q.id}" data-i="${i}" ${answered ? 'disabled' : ''}><b>${'abcd'[i]})</b><span>${esc(o)}</span></button>`).join('')}
+    ${answered ? `<div class="expl"><b>${ans === q.a ? t('Correct!') : `${t('Answer')}: (${'abcd'[q.a]})`}</b> ${esc(explOf(q))}</div>` : ''}</div>`;
+}
+
+// ------------------------------------------------------------------ Phase 5: Prelims Practice
+function startPrelims(mode, topicId, scroll = true, viaCa = false) {
+  let pool = S.data.mcq;
+  if (mode === 'topic') pool = pool.filter((q) => q.t === topicId);
+  if (mode === 'weak') {
+    const st = E.prelimsStats(S.state, S.data);
+    const weakTopics = Object.entries(st.byTopic).filter(([, g]) => g.attempts >= 1 && g.accuracy < 0.6).map(([id]) => id);
+    pool = pool.filter((q) => weakTopics.includes(q.t));
+    if (!pool.length) pool = S.data.mcq;
+  }
+  if (mode === 'topic' && !pool.length) {                     // topic without MCQs: practise its subject
+    const subj = topicById(topicId)?.s;
+    pool = S.data.mcq.filter((q) => topicById(q.t)?.s === subj);
+  }
+  const seenOk = new Set(S.state.attempts.filter((a) => a.c).map((a) => a.qid.replace(/^ca:/, '')));
+  const fresh = pool.filter((q) => !seenOk.has(q.id));
+  const ids = E.seededPick(fresh.length >= 5 ? fresh : pool, 10, `${E.iso(today())}-${mode}-${topicId}-${S.state.attempts.length}`).map((q) => q.id);
+  S.ui.prelims = { mode, topicId, ids, ans: {}, viaCa };
+  renderPrelims();
+  if (scroll) go('prelims');
+}
+function renderPrelims() {
+  const st = E.prelimsStats(S.state, S.data);
+  const subjRow = ['polity', 'history', 'geography', 'economy', 'environment', 'science'].map((id) => [sn(subjectById(id)), st.bySubject[id]]);
+  subjRow.push([t('Current Affairs-linked'), st.currentAffairs]);
+  const weak = st.weakest && topicById(st.weakest.topic);
+  const P = S.ui.prelims;
+  const qs = P ? P.ids.map((id) => S.data.mcq.find((q) => q.id === id)) : [];
+  const answered = P ? Object.keys(P.ans).length : 0;
+  $('#prelims').innerHTML = `<div class="grid g2" style="align-items:start">
+    <div class="card"><div class="kicker">${t('PRELIMS PERFORMANCE')}</div>
+      <div class="row spread"><div class="stat"><b>${pct(st.overall.accuracy)}</b><span>${t('Overall accuracy')}</span></div>
+      <div class="small muted">${nf(st.overall.attempts)} ${t('attempts')} · ${nf(st.overall.correct)} ${t('correct')} · ${nf(st.overall.incorrect)} ${t('incorrect')}</div></div>
+      ${subjRow.map(([n, g]) => `<div class="rd"><span>${esc(n)}</span>${meter(g.accuracy == null ? 0 : g.accuracy * 100)}<span class="small">${pct(g.accuracy)}</span></div>`).join('')}
+      <div class="weak"><div class="kicker" style="color:#fca5a5">${t('BIGGEST WEAKNESS')}</div>
+      ${weak ? `<div class="big">${esc(sn(subjectById(weak.s)))} — ${esc(tn(weak))}</div><div class="small">${t('Accuracy')}: ${pct(st.weakest.accuracy)} (${st.weakest.correct}/${st.weakest.attempts})</div>
+        <div class="row" style="margin-top:8px"><button class="btn" data-act="practise-weak" data-id="${weak.id}">${t('PRACTISE WEAK AREA')}</button><button class="btn ghost sm" data-act="teach" data-id="${weak.id}">${t('Learn this topic')}</button></div>`
+      : `<p class="small muted" style="margin:0">${t('Answer at least 3 questions in a topic to find your weakest area.')}</p>`}</div>
+    </div>
+    <div class="card"><div class="row spread"><div><div class="kicker">${t('Prelims Practice')}</div>${P ? `<div class="small muted">${P.mode === 'topic' ? esc(tn(topicById(P.topicId))) : P.mode === 'weak' ? t('Weak areas') : t('Mixed set')} · ${answered}/${qs.length}</div>` : ''}</div>
+      <div class="row"><button class="btn sm ${!P || P.mode !== 'mixed' ? 'ghost' : ''}" data-act="prelims-mode" data-mode="mixed">${t('Mixed set')}</button><button class="btn sm ${P?.mode === 'topic' ? '' : 'ghost'}" data-act="prelims-mode" data-mode="topic">${t('This topic')}</button><button class="btn sm ${P?.mode === 'weak' ? '' : 'ghost'}" data-act="prelims-mode" data-mode="weak">${t('Weak areas')}</button></div></div>
+      ${P ? (qs.length ? qs.map((q) => questionHtml(q, 'prelims', P.ans[q.id])).join('') : `<p class="empty">${t('No questions for this selection yet.')}</p>`)
+        + (answered === qs.length && qs.length ? `<div class="row" style="margin-top:8px"><button class="btn" data-act="prelims-mode" data-mode="${P.mode}">${t('New set')}</button></div>` : '')
+        : `<div class="empty"><button class="btn" data-act="prelims-mode" data-mode="mixed">${t('Mixed set')} · 10 ${t('questions')}</button></div>`}
+    </div></div>`;
+}
+
+// ------------------------------------------------------------------ Phase 10: CSAT
+function startCsat(cat, scroll = true) {
+  const pool = S.data.csat.filter((q) => !cat || q.c === cat);
+  S.ui.csat = { cat, ids: E.seededPick(pool, cat ? pool.length : 8, `${E.iso(today())}-csat-${cat}-${S.state.attempts.length}`).map((q) => q.id), ans: {} };
+  renderCsat();
+  if (scroll) go('csat');
+}
+function renderCsat() {
+  const st = E.csatStats(S.state);
+  const C = S.ui.csat;
+  const qs = C ? C.ids.map((id) => S.data.csat.find((q) => q.id === id)) : [];
+  $('#csat').innerHTML = `<div class="grid g2" style="align-items:start"><div class="card"><div class="kicker">${t('CSAT ACCURACY')}</div>
+    <div class="grid g3"><div class="stat"><b>${pct(st.accuracy)}</b><span>${t('CSAT ACCURACY')}</span></div><div class="stat"><b>${nf(st.attempts)}</b><span>${t('Questions attempted')}</span></div><div class="stat"><b>${nf(st.correct)}</b><span>${t('Questions correct')}</span></div></div>
+    ${E.CSAT_CATS.map((k) => `<div class="rd"><span>${t(k)}</span>${meter(st.byCat[k].accuracy == null ? 0 : st.byCat[k].accuracy * 100)}<span class="small">${pct(st.byCat[k].accuracy)}</span></div>`).join('')}
+    <p class="small" style="margin-top:8px">${t('Weakest area')}: <b>${st.weakest ? t(st.weakest) : '—'}</b></p>
+    <p class="tiny muted">${t('CSAT is qualifying: you need 33% (66/200).')}</p></div>
+    <div class="card"><div class="kicker">${t('CSAT')}</div><div class="tabs">${['', ...E.CSAT_CATS].map((k) => `<button class="chip ${C && C.cat === k ? 'on' : ''}" data-act="csat-cat" data-cat="${k}">${k ? t(k) : t('All')}</button>`).join('')}</div>
+    ${C ? qs.map((q) => questionHtml(q, 'csat', C.ans[q.id])).join('') : `<div class="empty"><button class="btn" data-act="csat-cat" data-cat="">${t('Practise CSAT')}</button></div>`}</div></div>`;
+}
+
+function answer(ctx, id, i) {
+  const now = today();
+  if (ctx === 'csat') {
+    const q = S.data.csat.find((x) => x.id === id);
+    if (!S.ui.csat || S.ui.csat.ans[id] !== undefined) return;
+    S.ui.csat.ans[id] = i;
+    E.recordAttempt(S.state, { qid: q.id, topic: q.c, subject: 'csat', kind: 'csat', correct: i === q.a }, now);
+    E.logMinutes(S.state, now, 2, 'csat');
+    save(); renderCsat(); renderReadiness();
+    return;
+  }
+  const q = S.data.mcq.find((x) => x.id === id);
+  const topic = topicById(q.t);
+  if (ctx === 'teach') { if (S.ui.teachAns !== undefined && S.ui.teachAns !== null) return; S.ui.teachAns = i; }
+  else { if (!S.ui.prelims || S.ui.prelims.ans[id] !== undefined) return; S.ui.prelims.ans[id] = i; }
+  E.recordAttempt(S.state, { qid: (ctx === 'prelims' && S.ui.prelims.viaCa ? 'ca:' : '') + q.id, topic: q.t, subject: topic.s, kind: 'prelims', correct: i === q.a }, now);
+  E.logMinutes(S.state, now, 1.5, 'prelims');
+  if (ctx === 'prelims') {
+    const P = S.ui.prelims;
+    if (Object.keys(P.ans).length === P.ids.length) {               // set complete: feed results into adaptive revision
+      const byTopic = {};
+      for (const qid of P.ids) { const x = S.data.mcq.find((m) => m.id === qid); (byTopic[x.t] ||= []).push(P.ans[qid] === x.a ? 1 : 0); }
+      for (const [tid, v] of Object.entries(byTopic)) E.reviewTopic(S.state, tid, v.reduce((a, b) => a + b, 0) / v.length, now);
+      const score = P.ids.filter((qid) => P.ans[qid] === S.data.mcq.find((m) => m.id === qid).a).length;
+      toast(t('Set complete: {0}/{1}. Revision updated.', score, P.ids.length));
+      renderRevision(); renderSyllabus();
+    }
+    save(); renderPrelims();
+  } else { save(); renderTeach(); }
+  renderCommandLite(); renderReadiness();
+}
+function renderCommandLite() { if (S.state.profile && !S.ui.editProfile) renderCommand(); }
+
+// ------------------------------------------------------------------ Phase 7: PYQ intelligence (official PDFs only)
+async function loadPyq() {
+  const { paper, year, q } = S.ui.pyq;
+  const box = $('#pyqList');
+  if (box) box.innerHTML = `<p class="empty">${t('Loading…')}</p>`;
+  try {
+    const r = await fetch(`/api/pyq?${new URLSearchParams({ paper, year, q })}`);
+    if (!r.ok) throw new Error(r.status);
+    S.ui.pyqRes = await r.json();
+  } catch { S.ui.pyqRes = { items: [], total: 0, error: true, official: 'https://upsc.gov.in/examinations/previous-question-papers', years: [] }; }
+  renderPyq();
+}
+function openPyqForTopic(topicId, scroll = true) {
+  const topic = topicById(topicId);
+  S.ui.topic = topicId;
+  S.ui.pyq = { paper: E.papersForTopic(topic)[0] || '', year: '', q: '' };
+  renderPyq(); loadPyq();
+  if (scroll) go('pyq');
+}
+function renderPyq() {
+  const topic = topicById(S.ui.topic) || S.data.topics[0];
+  const papers = E.papersForTopic(topic);
+  const R = S.ui.pyqRes;
+  const allPapers = ['Prelims GS-I', 'Prelims CSAT (GS-II)', 'Essay', 'Mains GS-I', 'Mains GS-II', 'Mains GS-III', 'Mains GS-IV', 'Optional'];
+  const official = R?.official || 'https://upsc.gov.in/examinations/previous-question-papers';
+  $('#pyq').innerHTML = `<div class="card"><div class="row spread"><div><div class="kicker">${t('OFFICIAL PAPERS')}</div><h2>${t('PYQs')} — ${esc(tn(topic))}</h2></div>
+    <a class="btn ghost sm" href="${esc(official)}" target="_blank" rel="noopener">${t('Official UPSC archive')} ↗</a></div>
+    <p class="small muted">${t('Relevant official papers')}: ${papers.map((x) => `<button class="chip ${S.ui.pyq.paper === x ? 'on' : ''}" data-act="pyq-paper" data-paper="${esc(x)}">${esc(x)}</button>`).join(' ')}</p>
+    <div class="row" style="margin-bottom:10px"><select data-act="pyq-filter-paper" aria-label="${t('All papers')}"><option value="">${t('All papers')}</option>${allPapers.map((x) => `<option ${S.ui.pyq.paper === x ? 'selected' : ''}>${x}</option>`).join('')}</select>
+      <select data-act="pyq-filter-year" aria-label="${t('All years')}"><option value="">${t('All years')}</option>${(R?.years || []).map((y) => `<option ${S.ui.pyq.year === y ? 'selected' : ''}>${y}</option>`).join('')}</select>
+      <input type="search" placeholder="${t('Search papers…')}" value="${esc(S.ui.pyq.q)}" data-act="pyq-search" aria-label="${t('Search papers…')}" style="flex:1;min-width:140px"></div>
+    <div id="pyqList">${!R ? `<p class="empty">${t('Loading…')}</p>` : R.error ? `<p class="empty">${t('The official paper index is not reachable right now. Open the UPSC archive directly:')} <a href="${esc(official)}" target="_blank" rel="noopener">upsc.gov.in</a></p>`
+      : R.items.length ? `<div class="grid g2">${R.items.map((x) => `<div class="row spread" style="border-top:1px solid var(--line);padding:8px 0"><span class="small"><b>${esc(x.year || '—')}</b> · ${esc(x.paper)}<br><span class="muted tiny">${esc(x.title.slice(0, 90))}</span></span><a class="btn ghost sm" href="${esc(x.url)}" target="_blank" rel="noopener" data-act="pyq-open" data-id="${topic.id}">${t('Open PDF')} ↗</a></div>`).join('')}</div>`
+      : `<p class="empty">${t('No papers match. Clear the filters or open the archive.')}</p>`}</div>
+    <p class="tiny muted">${t('Papers are listed from upsc.gov.in and open on the official site.')}</p>
+    <div class="row" style="margin-top:6px"><span class="small muted">PYQs →</span><button class="btn sm" data-act="practise" data-id="${topic.id}">${t('Related practice')}</button><button class="btn sm ghost" data-act="mains-topic" data-id="${topic.id}">${t('Mains question')}</button><button class="btn sm ghost" data-act="add-rev" data-id="${topic.id}">${t('Add topic to revision')}</button></div></div>`;
+}
+
+// ------------------------------------------------------------------ Phase 8: Mains Answer Lab
+function pickMains(topicId, skip) {
+  const done = new Set(S.state.mains.map((m) => m.qid));
+  let pool = S.data.mains.filter((q) => !topicId || q.t === topicId);
+  if (!pool.length) pool = S.data.mains.filter((q) => topicById(q.t)?.s === topicById(topicId)?.s);
+  if (!pool.length) pool = S.data.mains;
+  const fresh = pool.filter((q) => !done.has(q.id) && q.id !== skip);
+  const q = (fresh.length ? fresh : pool.filter((x) => x.id !== skip).length ? pool.filter((x) => x.id !== skip) : pool)[0];
+  S.ui.mains = { qid: q.id, text: '', start: Date.now(), result: null, prev: null, stage: 2 };
+}
+function renderMains() {
+  if (!S.ui.mains) pickMains(S.ui.topic);
+  const M = S.ui.mains;
+  const q = S.data.mains.find((x) => x.id === M.qid);
+  const hist = S.state.mains;
+  const avg = hist.length ? hist.reduce((a, m) => a + m.score / m.max, 0) / hist.length : null;
+  const stages = ['QUESTION', 'WORD LIMIT', 'WRITE', 'SUBMIT', 'EVALUATE', 'SEE WEAKNESSES', 'REWRITE'];
+  const r = M.result;
+  const W = { demand: (w) => t('Missed the demand of the question ({0}): add both sides and a reasoned judgement.', w.demand), dimensions: () => t('Insufficient dimensions: cover more aspects.'), intro: () => t('Weak introduction: open with 2–3 lines that define the issue.'),
+    examples: () => t('Poor examples: add articles, cases, committees, data or schemes.'), conclusion: () => t('Weak conclusion: end with a forward-looking way forward.'), short: (w) => t('Too short ({0} words).', w.words), long: (w) => t('Too long ({0} words) — trim to the limit.', w.words) };
+  $('#mains').innerHTML = `<div class="card"><div class="row spread"><div class="kicker">${t('MAINS ANSWER LAB')}</div><div class="small muted">${t('Answers written')}: ${nf(hist.length)}${avg != null ? ` · ${t('Average')} ${Math.round(avg * 100)}%` : ''}</div></div>
+    <div class="flow">${stages.map((s, i) => `<span class="${i < M.stage ? 'done' : i === M.stage ? 'on' : ''}">${t(s)}</span>`).join('')}</div>
+    <p style="font-size:1.05rem"><b>${esc(qText(q))}</b></p>${qAlt(q) ? `<p class="muted" lang="hi">${esc(qAlt(q))}</p>` : ''}
+    <div class="row small muted" style="margin-bottom:8px"><span class="chip p">${q.m} ${t('marks')}</span><span class="chip p">${t('WORD LIMIT')}: ${q.wl}</span><span>${esc(tn(topicById(q.t)))}</span>
+      <button class="btn ghost sm" data-act="mains-next">${t('Another question')}</button></div>
+    ${r ? `<div class="grid g2" style="align-items:start"><div><div class="stat"><b>${r.score}/${r.max}</b><span>${t('Score')} · ${r.words} ${t('words')}</span></div>
+        ${M.prev ? `<p class="small muted">${t('Previous attempt')}: ${M.prev.score}/${M.prev.max}</p>` : ''}
+        <div class="weak"><div class="kicker" style="color:#fca5a5">${t('MAIN WEAKNESS')}</div><div class="big">${esc(r.main ? W[r.main.key](r.main) : t('No major weakness found. Polish language and add one more example.'))}</div></div>
+        <ul class="small">${r.weaknesses.slice(1).map((w) => `<li>${esc(W[w.key](w))}</li>`).join('')}</ul>
+        <button class="btn" data-act="mains-rewrite">${t('REWRITE ANSWER')}</button></div>
+      <div class="small">${r.covered.length ? `<p><b>${t('Dimensions covered')}:</b> ${esc(r.covered.join(', '))}</p>` : ''}${r.missed.length ? `<p><b>${t('Dimensions to add')}:</b> ${esc(r.missed.join(', '))}</p>` : ''}
+        <details><summary class="muted">${t('Your answer')}</summary><p style="white-space:pre-wrap">${esc(M.text)}</p></details></div></div>`
+    : `<textarea id="mainsText" aria-label="${t('Your answer')}" lang="${lang()}" placeholder="${lang() === 'hi' ? 'भूमिका…\n\nमुख्य भाग…\n\nनिष्कर्ष / आगे की राह…' : 'Introduction…\n\nBody — points or sub-headings…\n\nConclusion / way forward…'}">${esc(M.text)}</textarea>
+      <div class="row spread" style="margin-top:8px"><span class="small muted"><span id="wc">${M.text.trim() ? M.text.trim().split(/\s+/).length : 0}</span> / ${q.wl} ${t('words')}</span><button class="btn" data-act="mains-submit">${t('Submit & evaluate')}</button></div>`}
+  </div>`;
+}
+// Mains strings that the engine keys need
+Object.assign(HI, { 'Your answer': 'आपका उत्तर' });
+
+// ------------------------------------------------------------------ Phase 9: adaptive revision
+function renderRevision() {
+  const b = E.revisionBuckets(S.state, today());
+  const item = (x, done) => { const tp = topicById(x.id); if (!tp) return ''; return `<div class="row spread" style="border-top:1px solid var(--line);padding:8px 0">
+    <span><b>${esc(tn(tp))}</b> <span class="muted small">${esc(sn(subjectById(tp.s)))}</span> ${x.weak ? `<span class="chip bad">${t('weak')}</span>` : ''}${x.overdue ? ` <span class="chip warn">${t('overdue {0}d', x.overdue)}</span>` : ''}${done ? ` <span class="chip ok">${t('Next in {0} day(s)', x.interval)}</span>` : ''}</span>
+    ${done ? '' : `<span class="row">${[['Forgot', 0.2], ['Hard', 0.6], ['Good', 0.8], ['Easy', 1]].map(([l, v]) => `<button class="btn sm ${v < 0.5 ? 'ghost' : 'soft'}" data-act="review" data-id="${x.id}" data-q="${v}">${t(l)}</button>`).join('')}<button class="btn ghost sm" data-act="practise" data-id="${x.id}">${t('PRACTISE')}</button></span>`}</div>`; };
+  const group = (title, list, done) => `<div style="margin-top:12px"><div class="kicker">${t(title)} · ${list.length}</div>${list.length ? list.map((x) => item(x, done)).join('') : `<p class="small muted">${t('Nothing here.')}</p>`}</div>`;
+  const any = Object.keys(S.state.revision).length;
+  $('#revision').innerHTML = `<div class="card"><div class="row spread"><h2 style="margin:0">${t('REVISION DUE TODAY')}: <span style="color:var(--p2)">${nf(b.due)}</span></h2><span class="small muted">Day 0 → ${E.LADDER.map((x) => `+${x}`).join(' → ')}</span></div>
+    <p class="small muted">${t('Recall the topic without notes, then rate yourself. Weak recall comes back sooner; strong recall stretches the interval.')}</p>
+    ${any ? group('HIGH PRIORITY', b.high) + group('NORMAL', b.normal) + group('COMPLETED', b.done, true) : `<p class="empty">${t('Study a topic or add one to revision to start your schedule.')}</p>`}</div>`;
+}
+
+// ------------------------------------------------------------------ Phase 6: current affairs (Khoj 8-area search with fallback)
+let caTimer = null; let caLoaded = false;
+async function loadCa() {
+  caLoaded = true;
+  const list = $('#caList'); if (list) list.innerHTML = `<p class="empty">${t('Loading…')}</p>`;
+  try {
+    const r = await fetch(`/api/ca?${new URLSearchParams({ area: S.ui.caArea, q: S.ui.caQ })}`);
+    if (!r.ok) throw new Error(r.status);
+    S.ui.ca = await r.json();
+    if (!S.ui.caArea && !S.ui.caQ) { S.state.caCounts = { d: E.iso(today()), c: E.caCountsFrom(S.ui.ca.items, S.data) }; save(); }
+  } catch { S.ui.ca = { source: 'none', items: [], offline: true }; }
+  renderCa();
+  if (S.state.profile && !S.ui.rec) renderCommandLite();
+}
+function renderCa() {
+  const C = S.ui.ca;
+  const areas = ['', 'polity', 'economy', 'environment', 'science', 'ir', 'society', 'culture', 'security'];
+  const srcNote = !C ? '' : C.source === 'khoj' ? t('via Khoj') : C.source === 'pib' ? t('Fallback: PIB official feed') : C.source === 'cache' ? t('Showing saved results from {0}', (C.cachedAt || '').slice(0, 10)) : t('Current affairs are unavailable right now. Saved items appear below.');
+  const card = (x, i) => {
+    const m = E.mapToTopic(`${x.title} ${x.summary || ''}`, S.data);
+    const tp = m && topicById(m.topicId);
+    return `<div class="ca"><h3>${x.url ? `<a href="${esc(x.url)}" target="_blank" rel="noopener" data-act="ca-open" data-i="${i}">${esc(x.title)}</a>` : esc(x.title)}</h3>
+      <p class="small" style="margin:0 0 4px">${esc(x.summary || '')}</p>
+      <div class="row tiny muted"><span>${t('Source')}: ${esc(x.source || '')}${x.published ? ` · ${esc(x.published)}` : ''}</span>
+      ${m ? `<span>${t('UPSC relevance')}:</span>${m.papers.map((p) => `<span class="chip p">${esc(p)}</span>`).join('')}` : `<span class="chip">${t('No syllabus link found')}</span>`}</div>
+      ${tp ? `<div class="row" style="margin-top:6px"><button class="btn ghost sm" data-act="teach" data-id="${tp.id}">${t('RELATED TOPIC')}: ${esc(tn(tp))}</button><button class="btn ghost sm" data-act="ca-practise" data-id="${tp.id}" data-i="${i}">${t('PRACTISE')}</button><button class="btn soft sm" data-act="ca-save" data-id="${tp.id}" data-i="${i}">${t('ADD TO REVISION')}</button></div>` : ''}</div>`;
+  };
+  const saved = S.state.ca.saved.slice(-8).reverse();
+  $('#ca').innerHTML = `<div class="card"><div class="row spread"><div class="kicker">${t('Current Affairs')}</div><span class="tiny muted">${esc(srcNote)}</span></div>
+    <div class="tabs">${areas.map((a) => `<button class="chip ${S.ui.caArea === a ? 'on' : ''}" data-act="ca-area" data-area="${a}">${a ? t(a) : t('All')}</button>`).join('')}</div>
+    <input type="search" placeholder="${t('Search current affairs…')}" value="${esc(S.ui.caQ)}" data-act="ca-search" aria-label="${t('Search current affairs…')}" style="width:100%;margin-bottom:8px">
+    <div id="caList">${!C ? `<p class="empty">${t('Loading…')}</p>` : C.items.length ? C.items.slice(0, 30).map(card).join('') : `<p class="empty">${esc(srcNote)}</p>`}</div>
+    ${saved.length ? `<div style="margin-top:10px"><div class="kicker">${t('Saved for revision')}</div>${saved.map((x) => `<div class="small" style="padding:4px 0">${x.url ? `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title)}</a>` : esc(x.title)} <span class="muted">· ${esc(tn(topicById(x.topic)))}</span></div>`).join('')}</div>` : ''}</div>`;
+}
+
+// ------------------------------------------------------------------ Phase 11: readiness
+const AREA_GO = { prelims: ['prelims', 'practise-weak'], csat: ['csat', 'csat-cat'], mains: ['mains', 'goto'], answerWriting: ['mains', 'goto'], revision: ['revision', 'goto'], currentAffairs: ['ca', 'goto'] };
+function renderReadiness() {
+  const R = E.readiness(S.state, S.data, today(), caCounts());
+  const keys = ['prelims', 'mains', 'csat', 'revision', 'currentAffairs', 'answerWriting'];
+  $('#readiness').innerHTML = `<div class="card"><div class="kicker">${t('UPSC READINESS')}</div>
+    ${keys.map((k) => `<div class="rd"><span>${t(k)}</span>${meter(R.area[k] ?? 0)}<span class="small">${R.area[k] == null ? `<span class="muted tiny">${t('Not started')}</span>` : `${R.area[k]}`}</span></div>`).join('')}
+    <div class="grid g3" style="margin-top:10px"><div class="stat"><span>${t('STRONGEST AREA')}</span><b style="font-size:1.05rem">${R.strongest ? t(R.strongest) : '—'}</b></div>
+      <div class="stat"><span>${t('WEAKEST AREA')}</span><b style="font-size:1.05rem">${R.weakest ? t(R.weakest) : '—'}</b></div>
+      <div class="stat"><span>${t('NEXT PRIORITY')}</span><b style="font-size:1.05rem">${R.next ? t(R.next) : '—'}</b>${R.next ? `<button class="btn sm" style="margin-top:4px" data-act="ready-go" data-area="${R.next}">${t('Go')} →</button>` : ''}</div></div>
+    <details style="margin-top:8px"><summary class="small muted">${t('How these scores work')}</summary><p class="small muted">${t('Prelims = accuracy (weighted by number of attempts, full weight at 40) and syllabus coverage. CSAT = accuracy, full weight at 16 attempts. Mains = average answer score relative to a strong 75% answer, full weight at 5 answers. Answer Writing = answers in the last 14 days (target 7). Revision = share of scheduled topics not overdue. Current Affairs = items read or saved in the last 7 days (target 10).')}</p></details></div>`;
+}
+
+function renderAll() { renderNav(); renderCommand(); renderTeach(); renderSyllabus(); renderPrelims(); renderPyq(); renderMains(); renderRevision(); renderCa(); renderCsat(); renderReadiness(); renderMissionBar(); }
+
+// ------------------------------------------------------------------ actions (one delegated listener)
+const ACT = {
+  lang() { S.state.lang = lang() === 'hi' ? 'en' : 'hi'; save(); renderAll(); },
+  'profile-edit'() { S.ui.editProfile = true; renderCommand(); go('command'); },
+  'profile-cancel'() { S.ui.editProfile = false; renderCommand(); },
+  recommend() { S.ui.rec = E.recommend(S.state, S.data, today(), caCounts()); if (S.ui.rec) S.ui.topic = S.ui.rec.topicId; renderCommand(); $('#recCard')?.focus?.(); },
+  teach(el) { S.ui.topic = el.dataset.id; S.ui.teachStep = 0; S.ui.teachAns = null; renderTeach(); go('teach'); },
+  'teach-step'(el) { S.ui.teachStep = +el.dataset.i; S.ui.teachAns = null; renderTeach(); },
+  studied(el) { E.markStudied(S.state, el.dataset.id, today()); save(); toast(t('Studied. First revision on {0}.', S.state.revision[el.dataset.id].due)); renderTeach(); renderRevision(); renderSyllabus(); renderCommandLite(); renderReadiness(); },
+  'pyq-topic'(el) { openPyqForTopic(el.dataset.id); },
+  'pyq-paper'(el) { S.ui.pyq.paper = el.dataset.paper; loadPyq(); },
+  'pyq-open'(el) { S.state.pyqOpened[el.dataset.id] = (S.state.pyqOpened[el.dataset.id] || 0) + 1; E.logMinutes(S.state, today(), 5, 'pyq'); save(); return true; },
+  practise(el) { startPrelims('topic', el.dataset.id); },
+  'practise-weak'(el) { startPrelims(el.dataset.id ? 'topic' : 'weak', el.dataset.id); },
+  'prelims-mode'(el) { startPrelims(el.dataset.mode, S.ui.prelims?.topicId || S.ui.topic || S.ui.rec?.topicId, false); },
+  answer(el) { answer(el.dataset.ctx, el.dataset.id, +el.dataset.i); },
+  'csat-cat'(el) { startCsat(el.dataset.cat || ''); },
+  'mains-topic'(el) { pickMains(el.dataset.id); renderMains(); go('mains'); },
+  'mains-next'() { pickMains(S.ui.mains?.qid ? S.data.mains.find((q) => q.id === S.ui.mains.qid).t : S.ui.topic, S.ui.mains?.qid); renderMains(); },
+  'mains-submit'() {
+    const M = S.ui.mains; M.text = $('#mainsText').value;
+    if (M.text.trim().split(/\s+/).length < 30) { toast(t('Write at least 30 words.')); return; }
+    const q = S.data.mains.find((x) => x.id === M.qid);
+    M.result = E.evaluateMains(M.text, q); M.stage = 5;
+    const mins = Math.min(60, Math.max(5, Math.round((Date.now() - M.start) / 60000)));
+    E.recordMains(S.state, { qid: q.id, topic: q.t, score: M.result.score, max: M.result.max, words: M.result.words, main: M.result.main }, today(), mins);
+    save(); renderMains(); renderRevision(); renderReadiness(); renderCommandLite(); renderSyllabus();
+  },
+  'mains-rewrite'() { const M = S.ui.mains; M.prev = M.result; M.result = null; M.stage = 6; M.start = Date.now(); renderMains(); $('#mainsText')?.focus(); },
+  review(el) { const r = E.reviewTopic(S.state, el.dataset.id, +el.dataset.q, today()); E.logMinutes(S.state, today(), 5, 'revision'); save(); toast(t('Next in {0} day(s)', r.interval)); renderRevision(); renderCommandLite(); renderReadiness(); renderSyllabus(); },
+  'add-rev'(el) { E.scheduleTopic(S.state, el.dataset.id, today()); save(); toast(t('Added to revision')); renderRevision(); renderCommandLite(); },
+  'ca-area'(el) { S.ui.caArea = el.dataset.area; loadCa(); },
+  'ca-open'(el) { const x = S.ui.ca.items[+el.dataset.i]; S.state.ca.seen[x.url || x.title] = E.iso(today()); save(); return true; },
+  'ca-practise'(el) { const x = S.ui.ca.items[+el.dataset.i]; S.state.ca.seen[x.url || x.title] = E.iso(today()); save(); startPrelims('topic', el.dataset.id, true, true); },
+  'ca-save'(el) {
+    const x = S.ui.ca.items[+el.dataset.i];
+    if (!S.state.ca.saved.some((s) => (s.url || s.title) === (x.url || x.title))) S.state.ca.saved.push({ title: x.title, url: x.url, topic: el.dataset.id, d: E.iso(today()) });
+    S.state.ca.saved = S.state.ca.saved.slice(-100);
+    E.scheduleTopic(S.state, el.dataset.id, today()); save(); toast(t('Added to revision')); renderCa(); renderRevision(); renderReadiness(); renderCommandLite();
+  },
+  'ready-go'(el) {
+    const a = el.dataset.area;
+    if (a === 'prelims') return startPrelims('weak');
+    if (a === 'csat') return startCsat('');
+    return go(AREA_GO[a][0]);
+  },
+  'mission-start'() { S.ui.mission = true; const m = missionPlan(); S.ui.missionTopic = m.topicId; if (m.next) gotoStep(m.next.key); renderCommand(); },
+  'mission-done'() {
+    const m = missionPlan(); if (!m.next) return;
+    E.completeStep(S.state, today(), m.next.key, m.next.minutes);
+    if (m.next.key === 'learn' || m.next.key === 'source') E.markStudied(S.state, S.ui.missionTopic, today());
+    save(); toast(t('Step done'));
+    const n = missionPlan().next;
+    renderCommand(); renderRevision(); renderSyllabus(); renderReadiness();
+    if (n) gotoStep(n.key); else { renderMissionBar(); go('command'); }
+  },
+  'mission-exit'() { S.ui.mission = false; renderMissionBar(); renderCommand(); },
+};
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('[data-act]');
+  if (!el || el.tagName === 'SELECT' || el.tagName === 'INPUT') return;
+  const fn = ACT[el.dataset.act];
+  if (!fn) return;
+  const keepDefault = fn(el, e) === true;              // links that open official pages keep their default action
+  if (!keepDefault) e.preventDefault();
+});
+document.addEventListener('change', (e) => {
+  const el = e.target;
+  if (el.dataset.act === 'teach-select') { S.ui.topic = el.value; S.ui.teachStep = 0; S.ui.teachAns = null; renderTeach(); }
+  if (el.dataset.act === 'pyq-filter-paper') { S.ui.pyq.paper = el.value; loadPyq(); }
+  if (el.dataset.act === 'pyq-filter-year') { S.ui.pyq.year = el.value; loadPyq(); }
+});
+let pyqTimer = null;
+document.addEventListener('input', (e) => {
+  const el = e.target;
+  if (el.id === 'mainsText') { S.ui.mains.text = el.value; const w = $('#wc'); if (w) w.textContent = el.value.trim() ? el.value.trim().split(/\s+/).length : 0; if (S.ui.mains.stage < 3) S.ui.mains.stage = 3; }
+  if (el.dataset.act === 'ca-search') { clearTimeout(caTimer); caTimer = setTimeout(() => { S.ui.caQ = el.value.trim(); loadCa().then(() => { const i = document.querySelector('[data-act=ca-search]'); i?.focus(); i?.setSelectionRange(i.value.length, i.value.length); }); }, 450); }
+  if (el.dataset.act === 'pyq-search') { clearTimeout(pyqTimer); pyqTimer = setTimeout(() => { S.ui.pyq.q = el.value.trim(); loadPyq().then(() => { const i = document.querySelector('[data-act=pyq-search]'); i?.focus(); i?.setSelectionRange(i.value.length, i.value.length); }); }, 450); }
+});
+document.addEventListener('submit', (e) => {
+  if (e.target.id !== 'profileForm') return;
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const p = { year: +f.get('year'), level: f.get('level'), hours: Math.max(1, Math.min(16, +f.get('hours') || 6)), optional: f.get('optional'), medium: f.get('medium'), focus: f.get('focus') };
+  const firstTime = !S.state.profile;
+  S.state.profile = { ...(S.state.profile || {}), ...p };
+  if (firstTime || p.medium !== 'bi') S.state.lang = p.medium === 'hi' ? 'hi' : 'en';
+  S.ui.editProfile = false; S.ui.rec = null;
+  save(); toast(t('Profile saved')); renderAll();
+});
+// keyboard: 1–4 answers the first unanswered question in the section that has focus
+document.addEventListener('keydown', (e) => {
+  if (!/^[1-4]$/.test(e.key) || /INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName || '')) return;
+  const sec = document.activeElement?.closest('section'); if (!sec) return;
+  const btn = sec.querySelector(`.q .opt:not(:disabled)[data-i="${+e.key - 1}"]`); if (btn) { btn.click(); }
+});
+
+// ------------------------------------------------------------------ boot: paint from local state first, then load content once
+async function boot() {
+  S.state = E.loadState(localStorage);
+  renderNav();
+  try {
+    const r = await fetch('/data/upsc-data.json');
+    if (!r.ok) throw new Error(r.status);
+    S.data = await r.json();
+  } catch {
+    $('#commandBody').innerHTML = `<div class="card empty"><p>${t('Could not load study data. Check your connection and reload.')}</p><button class="btn" onclick="location.reload()">${t('Reload')}</button></div>`;
+    return;
+  }
+  renderAll();
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver((en) => { if (en.some((x) => x.isIntersecting) && !caLoaded) loadCa(); }, { rootMargin: '400px' }) : null;
+  if (io) io.observe($('#ca')); else loadCa();
+  (window.requestIdleCallback || ((f) => setTimeout(f, 1200)))(() => { if (!caLoaded) loadCa(); if (!S.ui.pyqRes) loadPyq(); });
+  const secObs = 'IntersectionObserver' in window && new IntersectionObserver((en) => {
+    for (const x of en) if (x.isIntersecting) document.querySelectorAll('#secnav a').forEach((a) => a.classList.toggle('on', a.getAttribute('href') === `#${x.target.id}`));
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  if (secObs) document.querySelectorAll('main section').forEach((s) => secObs.observe(s));
+}
+window.__gyanagi = S;                                     // used by browser tests
+boot();
+</script>
+</body>
+</html>

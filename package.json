@@ -1,0 +1,15 @@
+{
+  "name": "gyanagi-upsc",
+  "version": "1.0.0",
+  "description": "GYANAGI — UPSC preparation operating system: plan, learn, practise, evaluate, revise (English + Hindi).",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check server.mjs && node --check public/js/engine.mjs && npm run build && npm test"
+  }
+}
