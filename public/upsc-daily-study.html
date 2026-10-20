@@ -119,8 +119,8 @@ header.top{background:color-mix(in srgb,var(--bg) 90%,transparent);border-bottom
 (function(){
   try{
     var saved=localStorage.getItem('gyanagi-theme');
-    document.documentElement.classList.toggle('dark',saved!=='light');
-  }catch(e){document.documentElement.classList.add('dark')}
+    document.documentElement.classList.toggle('dark',saved==='dark');
+  }catch(e){document.documentElement.classList.remove('dark')}
 })();
 </script>
 </head>
@@ -773,12 +773,12 @@ boot();
   function apply(value,save){
     var mode=value==='light'?'light':'dark';
     root.classList.toggle('dark',mode==='dark');
-    if(btn){btn.textContent=mode==='dark'?'☼ Day mode':'☾ Night mode';btn.setAttribute('aria-label',mode==='dark'?'Switch to light mode':'Switch to dark mode');}
+    if(btn){btn.textContent=mode==='dark'?'☼ Light mode':'● Black theme';btn.setAttribute('aria-label',mode==='dark'?'Switch to light theme':'Switch to black theme');}
     if(save){try{localStorage.setItem('gyanagi-theme',mode)}catch(e){}}
   }
-  apply((function(){try{return localStorage.getItem('gyanagi-theme')||'dark'}catch(e){return 'dark'}})(),false);
+  apply((function(){try{return localStorage.getItem('gyanagi-theme')||'light'}catch(e){return 'light'}})(),false);
   if(btn)btn.addEventListener('click',function(){apply(root.classList.contains('dark')?'light':'dark',true)});
-  window.addEventListener('storage',function(e){if(e.key==='gyanagi-theme')apply(e.newValue||'dark',false)});
+  window.addEventListener('storage',function(e){if(e.key==='gyanagi-theme')apply(e.newValue||'light',false)});
 })();
 </script>
 </body>
