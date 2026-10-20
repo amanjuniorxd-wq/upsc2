@@ -90,13 +90,46 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:.8rem;color:var(--m
 @media (max-width:620px){.g2,.g3{grid-template-columns:minmax(0,1fr)}.g5{grid-template-columns:repeat(2,minmax(0,1fr))}.logo small{display:none}.rd{grid-template-columns:100px 1fr 44px}main{padding:12px 12px 120px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
+
+<style id="gyanagi-shared-theme">
+/* GYANAGI shared black-and-gold identity and cross-page day/night mode */
+:root{--bg:#050505;--panel:#11110f;--panel2:#1c1a15;--line:rgba(211,174,92,.24);--ink:#f6f0df;--muted:#b9b09f;--p:#d5ad5d;--p2:#e0be6f;--p3:#f0d89c;--pd:#292316;--r:16px;color-scheme:dark}
+:root.dark{--bg:#050505;--panel:#11110f;--panel2:#1c1a15;--line:rgba(211,174,92,.24);--ink:#f6f0df;--muted:#b9b09f;--p:#d5ad5d;--p2:#e0be6f;--p3:#f0d89c;--pd:#292316;color-scheme:dark}
+:root:not(.dark){--bg:#fbf8f0;--panel:#fffefa;--panel2:#f2ecdf;--line:#e3d8bd;--ink:#26231d;--muted:#746d5f;--p:#987027;--p2:#9b762d;--p3:#72551e;--pd:#f2e7cc;color-scheme:light}
+body{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+header.top{background:color-mix(in srgb,var(--bg) 90%,transparent);border-bottom-color:var(--line)}
+.om{background:transparent;color:var(--p);box-shadow:none;border:1px solid var(--line);font-size:23px}
+.hero,.rec{background:linear-gradient(135deg,color-mix(in srgb,var(--p) 13%,var(--panel)),var(--panel));border-color:var(--line)}
+.rec{border-color:var(--line)}
+.btn{background:var(--p);color:#17130b}
+.btn.ghost{color:var(--ink);border-color:var(--line)}
+.btn.soft,.chip.p,.flow span.done{background:var(--pd);color:var(--p3)}
+.kicker{color:var(--p2)}
+.opt b{color:var(--p2)}
+.meter i{background:linear-gradient(90deg,#987027,#e0be6f)}
+.missionbar{background:color-mix(in srgb,var(--panel) 97%,transparent);border-top-color:var(--line)}
+.toast{background:var(--ink);color:var(--bg)}
+:root:not(.dark) .passage{color:var(--ink)}
+:root:not(.dark) .weak{background:#fbefed;border-color:#e6c5c1}
+:root:not(.dark) .weak .big{color:#9f3434}
+.theme-toggle{flex:0 0 auto;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:6px 11px;cursor:pointer;font-size:.82rem}
+@media(max-width:1180px){.theme-toggle{margin-left:0}}
+</style>
+<script>
+(function(){
+  try{
+    var saved=localStorage.getItem('gyanagi-theme');
+    document.documentElement.classList.toggle('dark',saved!=='light');
+  }catch(e){document.documentElement.classList.add('dark')}
+})();
+</script>
 </head>
 <body>
 <a class="skip" href="#command">Skip to content</a>
 <header class="top"><div class="bar">
   <a class="logo" href="#command" aria-label="GYANAGI home"><span class="om" aria-hidden="true">ॐ</span><span>GYANAGI<small data-t>UPSC Daily Study</small></span></a>
   <nav class="secs" id="secnav" aria-label="Sections"></nav>
-  <button class="btn ghost sm" id="langBtn" type="button" data-act="lang" lang="hi">हिंदी</button>
+  <button class="theme-toggle" id="themeBtn" type="button" aria-label="Switch day/night mode">☼ Day mode</button>\n  <button class="btn ghost sm" id="langBtn" type="button" data-act="lang" lang="hi">हिंदी</button>
 </div></header>
 
 <main id="main">
@@ -732,6 +765,21 @@ async function boot() {
 }
 window.__gyanagi = S;                                     // used by browser tests
 boot();
+</script>
+
+<script id="gyanagi-shared-theme-sync">
+(function(){
+  var root=document.documentElement,btn=document.getElementById('themeBtn');
+  function apply(value,save){
+    var mode=value==='light'?'light':'dark';
+    root.classList.toggle('dark',mode==='dark');
+    if(btn){btn.textContent=mode==='dark'?'☼ Day mode':'☾ Night mode';btn.setAttribute('aria-label',mode==='dark'?'Switch to light mode':'Switch to dark mode');}
+    if(save){try{localStorage.setItem('gyanagi-theme',mode)}catch(e){}}
+  }
+  apply((function(){try{return localStorage.getItem('gyanagi-theme')||'dark'}catch(e){return 'dark'}})(),false);
+  if(btn)btn.addEventListener('click',function(){apply(root.classList.contains('dark')?'light':'dark',true)});
+  window.addEventListener('storage',function(e){if(e.key==='gyanagi-theme')apply(e.newValue||'dark',false)});
+})();
 </script>
 </body>
 </html>
