@@ -377,3 +377,92 @@ export function seededPick(list, n, seed) {
   for (let i = arr.length - 1; i > 0; i--) { h = Math.imul(h ^ (h >>> 15), 2246822507) >>> 0; const j = h % (i + 1); [arr[i], arr[j]] = [arr[j], arr[i]]; }
   return arr.slice(0, n);
 }
+
+// ------------------------------------------------------------------ Study more: book-style reading
+const DEVA = /[\u0900-\u097F]/;
+const ABBR = /(?:\b(?:Art|Arts|Arts?|No|Nos|vs|v|viz|etc|e\.g|i\.e|Dr|Mr|Mrs|St|Sr|Jr|Govt|Dept|approx|cf|ca|c|Fig|Vol|Ch|Sec|Cl)|\b[A-Z])\.$/;
+
+/** Split a note into sentences without breaking on "Art. 21", "e.g.", initials or decimals. Hindi ends sentences with "।". */
+export function sentences(text) {
+  const src = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!src) return [];
+  const out = [];
+  let buf = '';
+  const hindi = DEVA.test(src);
+  const parts = src.split(hindi ? /(?<=[!?।])\s+/ : /(?<=[.!?])\s+/);
+  for (const p of parts) {
+    buf = buf ? `${buf} ${p}` : p;
+    if (ABBR.test(buf) || /\d\.$/.test(buf) && /^\d/.test(p)) continue;   // abbreviation: keep joining
+    out.push(buf); buf = '';
+  }
+  if (buf) out.push(buf);
+  return out;
+}
+
+/** Group sentences into short paragraphs (about 2 sentences / 260 characters each) so a note reads like a book page. */
+export function paragraphs(text, maxChars = 260) {
+  const out = [];
+  let cur = [];
+  for (const s of sentences(text)) {
+    const len = cur.join(' ').length;
+    if (cur.length && (cur.length >= 2 || len + s.length > maxChars)) { out.push(cur.join(' ')); cur = []; }
+    cur.push(s);
+  }
+  if (cur.length) out.push(cur.join(' '));
+  // a short last line reads like a stray fragment: fold it into the previous paragraph
+  if (out.length > 1 && out[out.length - 1].length < 70) out.splice(-2, 2, `${out[out.length - 2]} ${out[out.length - 1]}`);
+  return out;
+}
+
+const ACRONYMS = new Set(['pesa', 'rbi', 'gdp', 'gst', 'cpi', 'wpi', 'nje', 'njac', 'cag', 'upsc', 'isro', 'drdo', 'wto', 'imf', 'un', 'unesco', 'unfccc', 'ipcc', 'iucn', 'cites', 'nabard', 'sebi', 'irdai', 'niti', 'mgnrega', 'mgnregs', 'fdi', 'fpi', 'slr', 'crr', 'msp', 'pds', 'nfsa', 'gm', 'gmo', 'gmos', 'dna', 'rna', 'crispr', 'ai', 'pib', 'cbi', 'nia', 'cvc', 'eci', 'pil', 'dpsp', 'ews', 'obc', 'npa', 'npas', 'ibc', 'mpc', 'sdr', 'bop', 'cad', 'hdi', 'mpi', 'sdg', 'sdgs', 'ndc', 'ndcs', 'cfc', 'cfcs', 'hfc', 'hfcs', 'enso', 'iod', 'itcz', 'eez', 'unclos', 'iaea', 'npt', 'ctbt', 'brics', 'saarc', 'asean', 'sco', 'opec', 'ilo', 'who', 'fao', 'iss', 'gslv', 'pslv', 'pmla', 'uapa', 'afspa', 'rti', 'cic', 'nhrc', 'upi', 'sarfaesi', 'frbm', 'gva', 'gnp', 'nnp', 'ppp', 'ipr', 'trips', 'wipo', 'gi', 'eia', 'ngt', 'cop', 'redd', 'ozone', 'inc', 'ina', 'eic', 'cdm', 'lpg', 'ipc', 'crpc', 'bns', 'cji', 'mla', 'mp', 'mps', 'mlas', 'nri', 'oci', 'ccs', 'ncert', 'csat', 'pyq', 'isa', 'ivf', 'hiv', 'tb', 'amr', 'mrna', 'iot', '5g', 'gps', 'navic', 'irnss', 'lvm3', 'iaf', 'bsf', 'crpf', 'nsg', 'raw', 'ib', 'campa', 'ncb', 'nsa', 'ugc', 'nep', 'rte']);
+const SMALL = new Set(['of', 'and', 'the', 'for', 'in', 'to', 'on', 'by', 'a', 'an', 'or', 'vs', 'v', 'at', 'as']);
+
+function titleTerm(k) {
+  if (DEVA.test(k)) return k;
+  return k.split(' ').map((w, i) => {
+    const l = w.toLowerCase();
+    if (ACRONYMS.has(l.replace(/[^a-z0-9]/g, '')) && !['ozone', 'raw', 'who', 'inc', 'isa', 'cop', 'ina'].includes(l)) return w.toUpperCase();
+    if (i && SMALL.has(l)) return l;
+    if (/^\d+[a-z]$/i.test(w) && !/^\d+(st|nd|rd|th)$/i.test(w)) return w.toUpperCase();   // 51a -> 51A
+    if (/^\d/.test(w)) return l;
+    return l.charAt(0).toUpperCase() + l.slice(1);
+  }).join(' ');
+}
+
+/**
+ * Clean the keyword list into readable "key terms": only the reader's script, no near-duplicates
+ * ("kesavananda" when "kesavananda bharati" is present), proper capitalisation, capped length.
+ */
+export function keyTerms(kw, lang = 'en', max = 14) {
+  const want = (k) => (lang === 'hi' ? DEVA.test(k) : !DEVA.test(k));
+  let list = [...new Set((kw || []).map((k) => String(k).trim()).filter(Boolean))].filter(want);
+  if (lang === 'hi' && !list.length) list = [...new Set((kw || []).map((k) => String(k).trim()).filter(Boolean))].filter((k) => !DEVA.test(k));
+  const low = list.map((k) => k.toLowerCase());
+  list = list.filter((k, i) => !low.some((o, j) => j !== i && o.length > low[i].length && (o.startsWith(`${low[i]} `) || o.endsWith(` ${low[i]}`))));
+  // ideas first, then a few article numbers: a wall of "Article 123 · Article 213 …" is noise
+  const isArt = (k) => /^(article|art\.?|अनुच्छेद)\s*\d/i.test(k);
+  const ideas = list.filter((k) => !isArt(k) && k.length > 2);
+  const arts = list.filter(isArt).sort((a, b) => parseInt(a.replace(/\D+/, ''), 10) - parseInt(b.replace(/\D+/, ''), 10));
+  const nArts = Math.min(arts.length, Math.max(3, max - ideas.length));
+  const out = [...ideas.sort((a, b) => (b.includes(' ') - a.includes(' ')) || a.localeCompare(b)).slice(0, max - Math.min(nArts, 4)), ...arts.slice(0, Math.min(nArts, 4))];
+  return out.slice(0, max).map(titleTerm);
+}
+
+/** One topic as a readable chapter: number, subject, paragraphs, UPSC angle, sources, key terms, neighbours. */
+export function chapter(data, topicId, lang = 'en') {
+  const i = data.topics.findIndex((t) => t.id === topicId);
+  if (i < 0) return null;
+  const t = data.topics[i];
+  const hi = lang === 'hi';
+  return {
+    id: t.id, no: i + 1, total: data.topics.length,
+    subject: data.subjects.find((s) => s.id === t.s) || null,
+    title: hi ? t.nh : t.n, altTitle: hi ? t.n : t.nh,
+    body: paragraphs(hi && t.noteHi ? t.noteHi : t.note),
+    angle: hi && t.angleHi ? t.angleHi : t.angle,
+    sources: [...new Set(t.ncert || [])],
+    terms: keyTerms(t.kw, lang),
+    papers: t.papers || [],
+    prev: data.topics[i - 1]?.id || null, next: data.topics[i + 1]?.id || null,
+  };
+}

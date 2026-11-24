@@ -114,6 +114,42 @@ header.top{background:color-mix(in srgb,var(--bg) 90%,transparent);border-bottom
 :root:not(.dark) .weak .big{color:#9f3434}
 .theme-toggle{flex:0 0 auto;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:6px 11px;cursor:pointer;font-size:.82rem}
 @media(max-width:1180px){.theme-toggle{margin-left:0}}
+
+/* ---------- Study more: book reader ---------- */
+.reader{position:fixed;inset:0;z-index:60;background:var(--bg);display:none;flex-direction:column}
+.reader.on{display:flex}
+body.reading{overflow:hidden}
+.reader .rbar{display:flex;align-items:center;gap:8px;padding:10px max(14px,env(safe-area-inset-left));border-bottom:1px solid var(--line);background:var(--panel)}
+.reader .rbar .grow{flex:1;min-width:0;font-size:.82rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.reader .rprog{height:3px;background:var(--line)}.reader .rprog i{display:block;height:100%;width:0;background:var(--p);transition:width .15s}
+.reader .rscroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
+.reader .rwrap{display:flex;max-width:1100px;margin:0 auto;gap:28px;padding:0 18px}
+.reader .toc{width:230px;flex:none;padding:26px 0 40px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow-y:auto;font-size:.86rem}
+.reader .toc h4{margin:16px 0 6px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.reader .toc a{display:block;padding:4px 8px;border-radius:6px;color:var(--ink);text-decoration:none;line-height:1.35}
+.reader .toc a:hover{background:var(--panel2)}.reader .toc a.on{background:var(--pd);color:var(--p3);font-weight:600}
+.book{--rs:1.12rem;flex:1;min-width:0;max-width:68ch;margin:0 auto;padding:34px 0 90px;font-family:"Iowan Old Style","Palatino Linotype",Charter,Georgia,"Noto Sans Devanagari",serif;font-size:var(--rs);line-height:1.8;color:var(--ink)}
+.book:lang(hi) p,.book [lang=hi]{hyphens:manual}
+.book:lang(hi),.book [lang=hi]{font-family:"Noto Sans Devanagari",Inter,sans-serif;line-height:1.9}
+.book .kick{font-family:Inter,ui-sans-serif,sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--p)}
+.book h1{font-size:2.05em;line-height:1.15;margin:.25em 0 .1em;letter-spacing:-.01em;font-weight:700}
+.book .alt{color:var(--muted);font-size:.95em;margin:0 0 1.4em}
+.book .meta{font-family:Inter,ui-sans-serif,sans-serif;font-size:.78rem;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.6em;padding-bottom:1.2em;border-bottom:1px solid var(--line)}
+.book p{margin:0 0 1.05em;text-wrap:pretty;hyphens:auto}
+.book p.lead{font-size:1.08em;line-height:1.7}
+.book h2{font-family:Inter,ui-sans-serif,sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:2.2em 0 .8em;font-weight:700}
+.book .why{border-left:3px solid var(--p);background:var(--panel2);padding:.9em 1.1em;border-radius:0 10px 10px 0;margin:0}
+.book ol.src{padding-left:1.3em;margin:0}.book ol.src li{margin:.35em 0}.book ol.src li span{color:var(--muted)}
+.book .terms{display:flex;flex-wrap:wrap;gap:6px 8px;font-family:Inter,ui-sans-serif,sans-serif}
+.book .terms span{font-size:.8rem;padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
+.book .acts{display:flex;gap:8px;flex-wrap:wrap;font-family:Inter,ui-sans-serif,sans-serif;font-size:15px}
+.book .pn{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2.6em;font-family:Inter,ui-sans-serif,sans-serif}
+.book .pn button{text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);cursor:pointer;font:inherit;font-size:.9rem}
+.book .pn button:hover{border-color:var(--p)}.book .pn button.nx{text-align:right;grid-column:2}
+.book .pn small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:860px){.reader .toc{display:none;position:fixed;inset:57px 0 0 0;width:auto;max-height:none;background:var(--bg);padding:10px 18px 40px;z-index:2}.reader.toc-on .toc{display:block}.book{padding-top:24px}.book h1{font-size:1.7em}}
+@media (min-width:861px){.reader [data-act=read-toc]{display:none}}
+@media print{body>*:not(.reader){display:none!important}.reader{position:static;display:block}.reader .rbar,.reader .rprog,.reader .toc,.book .acts,.book .pn{display:none}}
 </style>
 <script>
 (function(){
@@ -129,7 +165,8 @@ header.top{background:color-mix(in srgb,var(--bg) 90%,transparent);border-bottom
 <header class="top"><div class="bar">
   <a class="logo" href="#command" aria-label="GYANAGI home"><span class="om" aria-hidden="true">ॐ</span><span>GYANAGI<small data-t>UPSC Daily Study</small></span></a>
   <nav class="secs" id="secnav" aria-label="Sections"></nav>
-  <button class="theme-toggle" id="themeBtn" type="button" aria-label="Switch day/night mode">☼ Day mode</button>\n  <button class="btn ghost sm" id="langBtn" type="button" data-act="lang" lang="hi">हिंदी</button>
+  <button class="theme-toggle" id="themeBtn" type="button" aria-label="Switch day/night mode">☼ Day mode</button>
+  <button class="btn ghost sm" id="langBtn" type="button" data-act="lang" lang="hi">हिंदी</button>
 </div></header>
 
 <main id="main">
@@ -146,6 +183,14 @@ header.top{background:color-mix(in srgb,var(--bg) 90%,transparent);border-bottom
 </main>
 
 <div class="missionbar" id="missionBar" role="region" aria-label="Today's mission"><div class="in" id="missionBarIn"></div></div>
+<div class="reader" id="reader" role="dialog" aria-modal="true" aria-labelledby="readerTitle">
+  <div class="rbar"><button class="btn ghost sm" type="button" data-act="read-close" aria-label="Close">←</button><span class="grow" id="readerCrumb"></span>
+    <button class="btn ghost sm" type="button" data-act="lang" id="readerLang" lang="hi">हिंदी</button>
+    <button class="btn ghost sm" type="button" data-act="read-toc" id="readerTocBtn">☰</button>
+    <button class="btn ghost sm" type="button" data-act="read-size" data-d="-1" aria-label="Smaller text">A−</button><button class="btn ghost sm" type="button" data-act="read-size" data-d="1" aria-label="Larger text">A+</button></div>
+  <div class="rprog"><i id="readerProg"></i></div>
+  <div class="rscroll" id="readerScroll"><div class="rwrap"><nav class="toc" id="readerToc" aria-label="Contents"></nav><article class="book" id="readerBook"></article></div></div>
+</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script type="module">
@@ -153,6 +198,10 @@ import * as E from './js/engine.mjs';
 
 // ------------------------------------------------------------------ i18n (English default; Hindi via the toggle or the Medium setting)
 const HI = {
+  'Study more': 'और पढ़ें', 'Study book': 'अध्ययन पुस्तक', 'Contents': 'विषय-सूची', 'Chapter {0} of {1}': 'अध्याय {0} / {1}', 'Chapter {0}': 'अध्याय {0}',
+  'Why it matters for UPSC': 'यूपीएससी के लिए महत्व', 'Read from NCERT': 'एनसीईआरटी से पढ़ें', 'Key terms': 'मुख्य शब्द', 'Previous': 'पिछला', 'Next chapter': 'अगला अध्याय',
+  'Test yourself': 'स्वयं को परखें', 'Practise MCQs': 'एमसीक्यू अभ्यास', 'Write a Mains answer': 'मुख्य उत्तर लिखें', '{0} min read': '{0} मिनट', 'Close': 'बंद करें',
+  'Read the full chapter like a book': 'पूरा अध्याय पुस्तक की तरह पढ़ें', 'Essay': 'निबंध',
   'UPSC Daily Study': 'यूपीएससी दैनिक अध्ययन', 'Command Center': 'कमांड सेंटर', 'Teach Me': 'मुझे पढ़ाइए', 'Syllabus': 'पाठ्यक्रम', 'Prelims Practice': 'प्रारंभिक अभ्यास',
   'PYQs': 'पिछले प्रश्न', 'Mains': 'मुख्य परीक्षा', 'Revision': 'पुनरावृत्ति', 'Current Affairs': 'समसामयिकी', 'CSAT': 'सीसैट', 'Readiness': 'तैयारी',
   'Days remaining': 'शेष दिन', "Today's planned study": 'आज का नियोजित अध्ययन', 'Completed today': 'आज पूर्ण', 'Overall preparation': 'कुल तैयारी',
@@ -364,19 +413,71 @@ function renderTeach() {
   const mq = S.data.mains.find((q) => q.t === topic.id);
   const r = S.state.revision[topic.id];
   let body = '';
-  if (step === 0) body = `<p>${esc(note)}</p>${bi() && topic.noteHi && lang() === 'en' ? `<p class="muted" lang="hi">${esc(topic.noteHi)}</p>` : ''}`;
+  if (step === 0) body = `${E.paragraphs(note).slice(0, 1).map((x) => `<p>${esc(x)}</p>`).join('')}<button class="btn" data-act="read" data-id="${topic.id}">📖 ${t('Study more')} →</button> <span class="tiny muted">${t('Read the full chapter like a book')}</span>`;
   if (step === 1) body = `<p>${esc(angle)}</p><div class="row">${topic.papers.map((x) => `<span class="chip p">${esc(x.toUpperCase())}</span>`).join('')}</div>`;
   if (step === 2) body = topic.ncert.length ? `<ul>${topic.ncert.map((x) => `<li lang="en">${esc(x)}</li>`).join('')}</ul><p class="tiny muted">NCERT · <a href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener">ncert.nic.in</a></p>` : `<p class="muted">${t('No direct NCERT chapter for this topic — use the official sources and current affairs.')}</p>`;
   if (step === 3) body = `<p>${E.papersForTopic(topic).map((x) => `<span class="chip p">${esc(x)}</span>`).join(' ')}</p><button class="btn" data-act="pyq-topic" data-id="${topic.id}">${t('Open official papers for this topic')}</button>`;
   if (step === 4) body = mcq ? `<div id="teachQ">${questionHtml(mcq, 'teach', S.ui.teachAns)}</div>` : `<p class="muted">${t('No questions for this selection yet.')}</p>`;
   if (step === 5) body = mq ? `<p><b>${esc(qText(mq))}</b> <span class="muted small">(${mq.m} ${t('marks')}, ${mq.wl} ${t('words')})</span></p><button class="btn" data-act="mains-topic" data-id="${topic.id}">${t('Write this answer in the Mains Lab')}</button>` : `<p class="muted">${t('No questions for this selection yet.')}</p>`;
   if (step === 6) body = `<p>${r ? t('Next revision: {0}', r.due) : t('Not scheduled yet')}</p><button class="btn" data-act="studied" data-id="${topic.id}">${t('Mark studied & schedule revision')}</button>`;
-  $('#teach').innerHTML = `<div class="card"><div class="row spread"><div><div class="kicker">${t('Teach Me')}</div><h2 id="teach-h">${esc(sn(subjectById(topic.s)))} — ${esc(tn(topic))}</h2></div>
+  $('#teach').innerHTML = `<div class="card"><div class="row spread"><div><div class="kicker">${t('Teach Me')}</div><h2 id="teach-h">${esc(sn(subjectById(topic.s)))} — ${esc(tn(topic))}</h2>${step ? `<button class="btn ghost sm" data-act="read" data-id="${topic.id}" style="margin-top:6px">📖 ${t('Study more')}</button>` : ''}</div>
     <label class="f" style="min-width:220px">${t('Choose a topic')}<select data-act="teach-select" aria-label="${t('Choose a topic')}">${S.data.subjects.map((s) => `<optgroup label="${esc(sn(s))}">${S.data.topics.filter((x) => x.s === s.id).map((x) => `<option value="${x.id}" ${x.id === topic.id ? 'selected' : ''}>${esc(tn(x))}</option>`).join('')}</optgroup>`).join('')}</select></label></div>
     <div class="flow" role="tablist">${TEACH.map((l, i) => `<button class="chip ${i === step ? 'on' : ''}" role="tab" aria-selected="${i === step}" data-act="teach-step" data-i="${i}">${i + 1}. ${t(l)}</button>`).join('')}</div>
     <div style="min-height:90px">${body}</div>
     <div class="row spread" style="margin-top:10px"><button class="btn ghost sm" data-act="teach-step" data-i="${Math.max(0, step - 1)}" ${step === 0 ? 'disabled' : ''}>← ${t('Back')}</button>
     <button class="btn sm" data-act="teach-step" data-i="${Math.min(6, step + 1)}" ${step === 6 ? 'disabled' : ''}>${t('Next')} →</button></div></div>`;
+}
+
+
+// ------------------------------------------------------------------ Study more: clean, book-style reader
+const READ_KEY = 'gyanagi.reader.size';
+let readSize = 0; try { readSize = Math.max(-2, Math.min(4, +localStorage.getItem(READ_KEY) || 0)); } catch { /* private mode */ }
+let readerReturn = null;
+const PAPER_LABEL = { prelims: 'Prelims', gs1: 'GS-I', gs2: 'GS-II', gs3: 'GS-III', gs4: 'GS-IV', essay: 'Essay' };
+function renderReader() {
+  const c = E.chapter(S.data, S.ui.readId, lang());
+  if (!c) return;
+  const book = $('#readerBook');
+  const L = lang();
+  book.setAttribute('lang', L);
+  book.style.setProperty('--rs', `${(1.12 + readSize * 0.08).toFixed(2)}rem`);
+  const words = c.body.join(' ').split(/\s+/).length + (c.angle || '').split(/\s+/).length;
+  const prevT = c.prev && topicById(c.prev), nextT = c.next && topicById(c.next);
+  const hasMcq = S.data.mcq.some((q) => q.t === c.id), hasMains = S.data.mains.some((q) => q.t === c.id);
+  book.innerHTML = `<div class="kick">${esc(sn(c.subject))} · ${t('Chapter {0}', c.no)}</div>
+    <h1 id="readerTitle">${esc(c.title)}</h1>${c.altTitle && c.altTitle !== c.title ? `<p class="alt" lang="${L === 'hi' ? 'en' : 'hi'}">${esc(c.altTitle)}</p>` : ''}
+    <div class="meta"><span>${t('{0} min read', Math.max(1, Math.round(words / 180)))}</span><span>·</span><span>${c.papers.map((x) => esc(PAPER_LABEL[x] ? t(PAPER_LABEL[x]) : x)).join(' · ')}</span></div>
+    ${c.body.map((x, i) => `<p${i === 0 ? ' class="lead"' : ''}>${esc(x)}</p>`).join('')}
+    ${c.angle ? `<h2>${t('Why it matters for UPSC')}</h2><p class="why">${esc(c.angle)}</p>` : ''}
+    ${c.sources.length ? `<h2>${t('Read from NCERT')}</h2><ol class="src" lang="en">${c.sources.map((x) => { const [book_, ch] = x.split(/\s+—\s+/); return `<li>${ch ? `${esc(ch)} <span>— ${esc(book_)}</span>` : esc(x)}</li>`; }).join('')}</ol>` : ''}
+    ${c.terms.length ? `<h2>${t('Key terms')}</h2><div class="terms">${c.terms.map((x) => `<span>${esc(x)}</span>`).join('')}</div>` : ''}
+    <h2>${t('Test yourself')}</h2><div class="acts">${hasMcq ? `<button class="btn" data-act="practise" data-id="${c.id}">${t('Practise MCQs')}</button>` : ''}${hasMains ? `<button class="btn ghost" data-act="mains-topic" data-id="${c.id}">${t('Write a Mains answer')}</button>` : ''}<button class="btn ghost" data-act="studied" data-id="${c.id}">${t('Mark studied & schedule revision')}</button></div>
+    <div class="pn">${prevT ? `<button data-act="read" data-id="${prevT.id}"><small>← ${t('Previous')}</small>${esc(tn(prevT))}</button>` : ''}${nextT ? `<button class="nx" data-act="read" data-id="${nextT.id}"><small>${t('Next chapter')} →</small>${esc(tn(nextT))}</button>` : ''}</div>`;
+  $('#readerCrumb').textContent = `${t('Study book')} · ${t('Chapter {0} of {1}', c.no, c.total)}`;
+  $('#readerToc').innerHTML = `<div class="kick" style="font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">${t('Contents')}</div>${S.data.subjects.map((s) => `<h4>${esc(sn(s))}</h4>${S.data.topics.filter((x) => x.s === s.id).map((x) => `<a href="#" data-act="read" data-id="${x.id}" class="${x.id === c.id ? 'on' : ''}" ${x.id === c.id ? 'aria-current="page"' : ''}>${esc(tn(x))}</a>`).join('')}`).join('')}`;
+  $('#readerTocBtn').setAttribute('aria-label', t('Contents'));
+  const rl = $('#readerLang'); rl.textContent = L === 'hi' ? 'English' : 'हिंदी'; rl.setAttribute('lang', L === 'hi' ? 'en' : 'hi');
+  $('#reader').classList.remove('toc-on');
+  $('#readerScroll').scrollTo({ top: 0, behavior: 'instant' });
+  readerProgress();
+  const toc = $('#readerToc'), on = toc.querySelector('a.on'); if (on) toc.scrollTop = Math.max(0, on.offsetTop - toc.clientHeight / 2);
+}
+function readerProgress() {
+  const sc = $('#readerScroll'); const max = sc.scrollHeight - sc.clientHeight;
+  $('#readerProg').style.width = `${max > 0 ? Math.min(100, (sc.scrollTop / max) * 100) : 100}%`;
+}
+function openReader(id) {
+  if (!$('#reader').classList.contains('on')) readerReturn = document.activeElement;
+  S.ui.readId = id || S.ui.topic || S.data.topics[0].id;
+  $('#reader').classList.add('on'); document.body.classList.add('reading');
+  renderReader();
+  $('#reader [data-act=read-close]').focus({ preventScroll: true });
+}
+function closeReader() {
+  if (!$('#reader').classList.contains('on')) return;
+  $('#reader').classList.remove('on', 'toc-on'); document.body.classList.remove('reading');
+  S.ui.readId = null;
+  readerReturn?.focus?.({ preventScroll: true });
 }
 
 // ------------------------------------------------------------------ Phase 4: syllabus graph
@@ -390,7 +491,7 @@ function renderSyllabus() {
       <div class="trow head"><span>${t('Topic')}</span><span>${t('Mastery')}</span><span>${t('MCQ acc.')}</span><span class="hm">${t('Last studied')}</span><span class="hm">${t('Revision due')}</span><span>${t('CA')} / ${t('PYQs opened')}</span><span></span></div>
       ${ts.map((x) => { const m = meta[x.id]; return `<div class="trow"><span>${esc(tn(x))}</span><span>${meter(m.mastery)}<span class="tiny muted">${m.mastery}%</span></span>
         <span>${pct(m.mcqAccuracy)}${m.mcqAttempts ? ` <span class="tiny muted">(${m.mcqAttempts})</span>` : ''}</span><span class="hm">${m.lastStudied || '—'}</span><span class="hm">${m.revisionDue || '—'}</span>
-        <span>${m.currentAffairsCount} / ${m.pyqCount}</span><button class="btn ghost sm" data-act="teach" data-id="${x.id}">${t('Teach')}</button></div>`; }).join('')}
+        <span>${m.currentAffairsCount} / ${m.pyqCount}</span><span class="row"><button class="btn ghost sm" data-act="teach" data-id="${x.id}">${t('Teach')}</button><button class="btn ghost sm" data-act="read" data-id="${x.id}" aria-label="${t('Study more')}: ${esc(tn(x))}">📖</button></span></div>`; }).join('')}
     </details>`;
   }).join('')}`;
 }
@@ -647,10 +748,14 @@ function renderAll() { renderNav(); renderCommand(); renderTeach(); renderSyllab
 
 // ------------------------------------------------------------------ actions (one delegated listener)
 const ACT = {
-  lang() { S.state.lang = lang() === 'hi' ? 'en' : 'hi'; save(); renderAll(); },
+  lang() { S.state.lang = lang() === 'hi' ? 'en' : 'hi'; save(); renderAll(); if (S.ui.readId) renderReader(); },
   'profile-edit'() { S.ui.editProfile = true; renderCommand(); go('command'); },
   'profile-cancel'() { S.ui.editProfile = false; renderCommand(); },
   recommend() { S.ui.rec = E.recommend(S.state, S.data, today(), caCounts()); if (S.ui.rec) S.ui.topic = S.ui.rec.topicId; renderCommand(); $('#recCard')?.focus?.(); },
+  read(el) { openReader(el.dataset.id); },
+  'read-close'() { closeReader(); },
+  'read-toc'() { $('#reader').classList.toggle('toc-on'); },
+  'read-size'(el) { readSize = Math.max(-2, Math.min(4, readSize + +el.dataset.d)); try { localStorage.setItem(READ_KEY, String(readSize)); } catch { /* ignore */ } $('#readerBook').style.setProperty('--rs', `${(1.12 + readSize * 0.08).toFixed(2)}rem`); },
   teach(el) { S.ui.topic = el.dataset.id; S.ui.teachStep = 0; S.ui.teachAns = null; renderTeach(); go('teach'); },
   'teach-step'(el) { S.ui.teachStep = +el.dataset.i; S.ui.teachAns = null; renderTeach(); },
   studied(el) { E.markStudied(S.state, el.dataset.id, today()); save(); toast(t('Studied. First revision on {0}.', S.state.revision[el.dataset.id].due)); renderTeach(); renderRevision(); renderSyllabus(); renderCommandLite(); renderReadiness(); },
@@ -708,6 +813,7 @@ document.addEventListener('click', (e) => {
   if (!el || el.tagName === 'SELECT' || el.tagName === 'INPUT') return;
   const fn = ACT[el.dataset.act];
   if (!fn) return;
+  if (el.closest('#reader') && !el.dataset.act.startsWith('read') && el.dataset.act !== 'lang') closeReader();   // Practise / Mains leave the book
   const keepDefault = fn(el, e) === true;              // links that open official pages keep their default action
   if (!keepDefault) e.preventDefault();
 });
@@ -735,6 +841,8 @@ document.addEventListener('submit', (e) => {
   S.ui.editProfile = false; S.ui.rec = null;
   save(); toast(t('Profile saved')); renderAll();
 });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && S.ui.readId) closeReader(); });
+document.getElementById('readerScroll').addEventListener('scroll', () => readerProgress(), { passive: true });
 // keyboard: 1–4 answers the first unanswered question in the section that has focus
 document.addEventListener('keydown', (e) => {
   if (!/^[1-4]$/.test(e.key) || /INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName || '')) return;
