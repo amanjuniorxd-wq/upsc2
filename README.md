@@ -21,6 +21,7 @@ Optional real-browser walkthrough of every phase (desktop, mobile, Hindi):
 | **Study profile** | Shown once: attempt year, level, daily hours, optional, medium (English / Hindi / Bilingual), focus (Prelims / Mains / Both). Stored on the device only. |
 | **What should I study now?** | One topic, with the reasons that picked it (weak accuracy, overdue revision, PYQ frequency, related current affairs, not yet studied). Transparent, deterministic scoring; no AI call. |
 | **Teach Me** | Understand → UPSC angle → Source (NCERT) → PYQ → Prelims question → Mains question → Revision. |
+| **Study more (book reader)** | 📖 on Teach Me and every syllabus row opens the topic as a clean chapter: short paragraphs, *Why it matters for UPSC*, NCERT chapters, tidy key terms, Practise / Mains / Revision, previous–next chapter, contents sidebar, A−/A+ text size, English ⇄ हिंदी, Esc to close, print-friendly. |
 | **Syllabus graph** | 11 subjects, 51 topics, each with mastery, MCQ accuracy, last studied, revision due, PYQs opened and current-affairs count. |
 | **Prelims Practice** | Mixed / this topic / weak-area sets with answer review; accuracy overall and by subject; **biggest weakness** with one-tap practice. Finished sets update revision. |
 | **PYQs** | Official UPSC papers only (indexed from upsc.gov.in, opened on the official site), filtered to the papers relevant to the topic, then related practice → Mains → add to revision. |

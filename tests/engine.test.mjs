@@ -167,3 +167,23 @@ test('content: every syllabus area in the brief exists with Hindi', () => {
     'Health', 'Social Issues', 'India & Neighbours', 'Major Powers', 'International Organisations', 'Global Groupings', 'Constitution']) assert.ok(names.includes(n), n);
   assert.ok(data.topics.every((t) => t.nh && t.noteHi));
 });
+
+test('study more: notes split into clean paragraphs without breaking "Art. 21" or Hindi "अनु."', () => {
+  assert.deepEqual(E.sentences('Art. 21 covers privacy. Art. 32 is a remedy.'), ['Art. 21 covers privacy.', 'Art. 32 is a remedy.']);
+  assert.deepEqual(E.sentences('अब अनु. 21 में निजता शामिल है। अनु. 32 उपचार है।'), ['अब अनु. 21 में निजता शामिल है।', 'अनु. 32 उपचार है।']);
+  for (const t of data.topics) for (const lang of ['en', 'hi']) {
+    const c = E.chapter(data, t.id, lang);
+    assert.ok(c.body.length >= 1, `${t.id} has text`);
+    assert.equal(c.body.join(' ').replace(/\s+/g, ' '), (lang === 'hi' ? t.noteHi : t.note).replace(/\s+/g, ' ').trim(), `${t.id}/${lang}: no text lost`);
+    for (const p of c.body) { assert.ok(p.length >= 40, `${t.id}/${lang}: no stray fragment "${p}"`); assert.ok(!/\b(Art|अनु)\.$/.test(p), `${t.id}/${lang}: split after abbreviation`); }
+  }
+});
+
+test('study more: key terms are in the reader\'s script, de-duplicated and capitalised', () => {
+  const en = E.keyTerms(['kesavananda', 'kesavananda bharati', 'basic structure', 'मूल ढाँचा', 'article 51a', 'pesa', 'gram sabha'], 'en');
+  assert.deepEqual(en, ['Basic Structure', 'Gram Sabha', 'Kesavananda Bharati', 'PESA', 'Article 51A']);
+  assert.deepEqual(E.keyTerms(['basic structure', 'मूल ढाँचा'], 'hi'), ['मूल ढाँचा']);
+  const c = E.chapter(data, data.topics[0].id, 'en');
+  assert.equal(c.no, 1); assert.equal(c.prev, null); assert.equal(c.next, data.topics[1].id);
+  assert.ok(c.terms.length <= 14 && c.terms.filter((x) => /^Article/.test(x)).length <= 4);
+});
